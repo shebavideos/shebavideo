@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="a keylogger, tells you the keycode you pressed and it's ASCII code" />
+    <meta name="keywords" content="sheba video webApp" />
+    <meta name="author" content="K.T Motshoana" />
+    <meta name="theme-color" content="#3366cc" />
+    <link rel="apple-touch-icon" href="../icons/192x192.png" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <title>Sheba</title>
+    <script defer src="./js/main.js"></script>
+    <script defer>
+        if ("serviceWorker" in navigator) {
+            window.onload = async function () {
+
+                try {
+                    let reg = await navigator.serviceWorker.register("./sw.js");
+                    console.log(`Service Worker registered at ${reg.scope}`);
+
+                } catch (err) {
+                    console.error(`Bothata ke bo : ${err}`)
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <header>
+
+            <input class="btn upload fileupload" type="file" multiple accept="video/*">
+            <button class="btn about"><a href="./about.html">About</a></button>
+
+        </header>
+        <div class="main">
+            <section class="videoplayer">
+                <div class="screen">
+                    <video id="curVideo" src="#"></video>
+                </div>
+                <div class="controls">
+                    <!-- video player controls -->
+                    <!-- <section id="duration"></section> -->
+                    <section id="volume">
+                        <button id="fullScreen">full</button>
+                        <button id="volumeUp">v+</button>
+                        <button id="volumeDown">v-</button>
+                    </section>
+                    <section id="pp">
+                        <button id="skipBackwards">
+                            <<</button> <button id="play">play
+                        </button>
+                        <button id="skipForward">>></button>
+                    </section>
+                    <button id="xsp">x1.5</button>
+                    <button id="pip">pip</button>
+                </div>
+            </section>
+            <section class="playlist">
+
+
+
+                <!-- <h3 id="noVideo"> Upload videos</h3> -->
+            </section>
+        </div>
+    </div>
+
+</body>
+
+</html>

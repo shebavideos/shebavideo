@@ -1,0 +1,27 @@
+{
+
+        "short_name": "sheba",
+        "name": "sheba video",
+        "description": "a video webApp with cool features such as picture in picture and xspeed extension",
+        "author": "K.T Motshoana",
+        "lang": "en-US",
+        "start_url": ".",
+        "background_color": "#3366cc",
+        "theme_color" :"#3366cc",
+        "scope": "/",
+        "display": "standalone",
+        "icons": [
+            {
+                "src": "/icons/192x192.png",
+                "type": "image/png",
+                "sizes": "192x192",
+                "purpose":"maskable circle"
+            },
+            {
+                "src" : "/icons/512x512.png",
+                "type": "image/png",
+                "sizes": "512x512",
+                "purpose":"maskable circle"
+            }
+        ]
+    }
