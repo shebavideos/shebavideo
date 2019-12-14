@@ -37,7 +37,8 @@ const cacheName = "sheba",
     
     self.addEventListener('fetch', e => {
         console.log("service worker is serving the asset.");
-        e.respondWith(caches.match(e.request).then(res => {
+        e.respondWith(caches.match(e.request)
+        .then(res => {
             if (res) {
                 return res
             }
