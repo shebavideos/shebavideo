@@ -15,19 +15,19 @@
                 "src": "/icons/144x144.png",
                 "type": "image/png",
                 "sizes": "144x144",
-                "purpose":" maskable circle"
+                "purpose":" maskable any"
             },
             {
                 "src": "/icons/192x192.png",
                 "type": "image/png",
                 "sizes": "192x192",
-                "purpose":" maskable circle"
+                "purpose":" maskable any"
             },
             {
                 "src" : "/icons/512x512.png",
                 "type": "image/png",
                 "sizes": "512x512",
-                "purpose":" maskable circle"
+                "purpose":" maskable any"
             }
         ]
     }
