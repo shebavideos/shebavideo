@@ -9,34 +9,34 @@ const cacheName = "sheba",
     ];
 
     self.addEventListener('install', e => {
-        console.log("service worker being installed");
+        // console.log("service worker being installed");
         // perform install steps
         e.waitUntil(
             caches.open(cacheName)
             .then(cache => {
-                console.log("cache is open")
+                // console.log("cache is open")
                 return cache.addAll(items);
             })
         )
     
         self.skipWaiting();
-        console.log("service worker installed");
+        // console.log("service worker installed");
     });
     
     self.addEventListener('activate', e => {
         caches.keys().then(cacheNames => {
             return Promise.all(cacheNames.map(name => {
-                if (cacheName.indexOf(name) === -1) {
+                if (!cacheName.includes(name)) {
                     return caches.delete(name)
                 }
             }))
         });
     
-        console.log("service worker activated")
+        // console.log("service worker activated")
     });
     
     self.addEventListener('fetch', e => {
-        console.log("service worker is serving the asset.");
+        // console.log("service worker is serving the asset.");
         e.respondWith(caches.match(e.request)
         .then(res => {
             if (res) {
@@ -54,7 +54,7 @@ const cacheName = "sheba",
                 });
                 return netWorkResponse
             }).catch(err => {
-                console.error(`Bothata ke bo ${err}`)
+                // console.error(err)
             })
         }));
     });

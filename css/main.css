@@ -3,19 +3,24 @@
     padding: 0;
     margin: 0;
 }
-a{
-    text-decoration:none;
+
+body {
+    background-color: #222;
+}
+
+a {
+    text-decoration: none;
     color: white;
 }
 
 #curVideo {
     width: 100%;
     height: 100%;
-    background-color: rgba(15, 15, 15, 0.274);
+    background-color: #4242428f;
 
 }
 
-button{
+button {
     border: none;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
@@ -63,150 +68,137 @@ header {
     align-self: flex-start;
     display: grid;
     grid-template-columns: repeat(12, auto);
-    grid-template-rows: repeat(12, auto);
+    grid-template-rows: repeat(10, auto);
     gap: 4px;
 }
+
 /* only applies when on fullscreen mode */
-.videoplayer:fullscreen{
-    width:100%;
+.videoplayer:fullscreen {
+    width: 100%;
     height: 100%;
 }
 
 .screen {
     grid-column: 1/13;
-    grid-row: 1/12;
+    grid-row: 1/10;
     z-index: 2;
 }
 
 .controls {
     grid-column: 1/13;
-    grid-row: 7/12;
+    grid-row: 7/10;
     background-color: rgba(8, 8, 8, 0);
     display: grid;
     grid-template-columns: repeat(12, auto);
-    grid-template-rows: repeat(2,25px);
+    grid-template-rows: repeat(1, 25px);
     column-gap: 2px;
-    grid-template-areas: 
-    "d d d d d d d d d d d d"
-    ". .v v p p x c . . . .";
+    grid-template-areas:
+        ". . . v v p p x c  . . .";
     z-index: 3;
 }
 
-#duration{
-    height:15px;
-    width:5%;
-    grid-area:d;
-    background:linear-gradient(
-        rgba(58, 130, 238, 0) ,
-        rgba(11, 82, 214, 0) ,
-        rgba(47, 173, 182, 0));
-}
-#duration:hover{
-    background:linear-gradient(
-        rgb(58, 130, 238) ,
-        rgb(11, 82, 214) ,
-        rgb(47, 173, 182));
-}
-#volume{
-    grid-area:v;
-    border-radius:2px;
-    display:flex;
+
+#volume {
+    grid-area: v;
+    border-radius: 2px;
+    display: flex;
     justify-content: center;
 }
-#volume > * {
-    margin-left:5px;
-    width:50px;
-    background-color:rgb(0, 110, 255);
+
+#volume>* {
+    margin-left: 5px;
+    width: 50px;
+    background-color: #006eff;
 }
-#pp{
-    grid-area:p;
-    background-color:rgb(0, 110, 255);
-    width:100px;
-    height:30px;
+
+#pp {
+    grid-area: p;
+    background-color: #006eff;
+    width: 100px;
+    height: 30px;
     border-radius: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: row nowrap;
 }
-#pp > * {
-    width:30px;
+
+#pp>* {
+    width: 30px;
     height: 25px;
     background-color: rgba(255, 255, 255, 0);
 }
-#pp > :nth-child(2){
-    border-left: 1px solid white ;
-    border-right: 1px solid white ;
-}
-#xsp{
-    grid-area: x;
-    border-radius:2px;
-    background-color:rgb(0, 110, 255);
+
+#pp> :nth-child(2) {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
 }
 
-#pip{
-    grid-area:c;
-    border-radius:2px;
-    background-color:rgb(0, 110, 255);
+#xsp {
+    grid-area: x;
+    border-radius: 2px;
+    background-color: #006eff;
+}
+
+#pip {
+    grid-area: c;
+    border-radius: 2px;
+    background-color: #006eff;
 }
 
 .playlist {
     height: 80vh;
     width: 40%;
     display: grid;
-    grid-template-columns: repeat(3,auto);
-    grid-template-rows: repeat(50,auto);
-    grid-gap:4px;
-    /* padding-top: 10px; */
-    overflow-y: scroll;
-    overflow-x: hidden;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(50, auto);
+    grid-gap: 4px;
+    overflow-y: auto;
+    overflow-x: auto;
 }
 
 .next-vid {
-    width:150px;
+    max-width: 200px;
     height: 150px;
-    /* margin-right: 8px;
-    margin-bottom: 8px; */
     display: grid;
     grid-template-columns: repeat(12, auto);
     grid-template-rows: repeat(12, auto);
     grid-gap: 5px;
-    background-color:gray;
     cursor: pointer;
 }
 
 .next {
     height: 100%;
-    width:100%;
-    background-color:black;
+    width: 100%;
+    background-color: black;
     grid-column: 1/13;
     grid-row: 1/13;
 }
 
 .delete {
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
     z-index: 1;
     background-color: rgb(255, 72, 0);
     grid-column: 11/12;
     grid-row: 2/4;
     text-align: center;
-    line-height: 25px;
+    line-height: 1.5;
     color: white;
     font-size: large;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
-    border-radius:2px;
+    border-radius: 2px;
 }
 
-h3{
+h3 {
     margin: 20% auto;
 }
 
 
 
 /* media */
-@media screen and (max-width:768px) {
+@media screen and (max-width:685px) {
     .main {
         flex-flow: column;
     }
@@ -214,57 +206,57 @@ h3{
     .videoplayer {
         width: 100%;
         height: 40%;
+        margin-bottom:20px;
     }
 
     .playlist {
         width: 100%;
         height: 50%;
+        margin-top:100px;
     }
 }
 
-a{
+a {
     text-decoration: none;
-    color:white;
- }
- #home {
-   background-color: teal;
-   border:none;
-   width:100px;
-   height: 25px;
-   position: absolute;
-   top:30px;
-   left:30px;
- }
- 
+    color: white;
+}
 
-.xrate{
-    display: flex;;
+#home {
+    background-color: teal;
+    border: none;
+    width: 100px;
+    height: 25px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+
+.xrate {
+    display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    width:120px;
+    width: 120px;
     height: 160px;
     z-index: 5;
     position: absolute;
-    top:25%;
-    left:50%;
-    background-color: rgba(255, 255, 255, 0.842);
-
+    top: 25%;
+    left: 50%;
+    border: 1px solid white;
 }
 
-.rate{
+.rate {
     cursor: pointer;
-    border-top: 0.5px solid rgb(0, 110, 255);
-    border-bottom:  0.5px solid rgb(0, 110, 255);
-    width:100%;
+    background-color:#222;
+    width: 100%;
     height: 100%;
     text-align: right;
     padding-right: 10px;
-    color: rgb(5, 5, 5);
-    border:1px solid rgb(166, 201, 248);
+    color: #ffffff;
     border-radius: 2px;
 }
-.rate:hover{
-    background-color: rgb(53, 178, 228);
-    color:white;
-    border:1px solid rgb(244, 246, 248);
+
+.rate:hover {
+    background-color: #006eff;
+    color: white;
 }

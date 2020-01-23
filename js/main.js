@@ -10,35 +10,23 @@ document.addEventListener("DOMContentLoaded", function () {
         play = document.querySelector("#play"),
         xspeed = document.querySelector("#xsp"),
         pip = document.querySelector("#pip"),
-        homeBtn= document.querySelector("#home"),
         curVideo = document.querySelector("#curVideo"),
         list = document.querySelector(".playlist"),
-        videoList = [],
-        xp = [
-            0.5,
-            1,
-            1.75,
-            2,
-            2.75,
-            3,
-            3.75,
-            4,
-        ];
+        xp = [0.5, 1, 1.75, 2, 2.75, 3, 3.75, 4, ];
 
-    // homeBtn.onclick = e => history.back()
 
     pip.onclick = e => {
         e.stopImmediatePropagation();
-        if (!document.pictureInPictureElement){
+        if (!document.pictureInPictureElement) {
             curVideo.requestPictureInPicture()
-            .catch (err => {
-                console.error(`Bothata ke bo ${err}`);
-            }); 
-        }else{
+                .catch(err => {
+                    console.error(`Bothata ke bo ${err}`);
+                });
+        } else {
             document.exitPictureInPicture()
-            .catch(err => {
-                console.error(`Bothata ke bo ${err}`);
-            })
+                .catch(err => {
+                    console.error(`Bothata ke bo ${err}`);
+                })
         }
     }
     document.onkeydown = e => {
@@ -85,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
     curVideo.onclick = e => e.target.paused ? e.target.play() : e.target.pause()
 
     function playVideo(src) {
+        curVideo.style.backgroundColor = '#222';
         curVideo.src = src;
         curVideo.autoplay = true;
     }
@@ -109,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function uploadCMP(videos) {
         videos.forEach(vid => {
-            videoList.push(vid);
             const nxt = document.createElement("div"),
                 video = document.createElement("video"),
                 del = document.createElement("div");
@@ -119,10 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
             video.currentTime += 59; //seconds
             del.textContent = "x";
             video.src = vid.src;
-            nxt.appendChild(video);
-            nxt.appendChild(del);
-            list.appendChild(nxt);
-
             nxt.onclick = e => {
                 e.stopImmediatePropagation();
                 playVideo(e.target.src);
@@ -130,13 +114,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             del.onclick = e => {
                 e.stopImmediatePropagation();
-                // console.log(e.target.previousElementSibling.src)
-                videos = videos.filter(video => video.src !== e.target.previousElementSibling.src);
                 let parent = e.target.parentElement,
                     grandParent = parent.parentElement;
                 grandParent.removeChild(parent);
-
             }
+            nxt.appendChild(video);
+            nxt.appendChild(del);
+            list.appendChild(nxt);
         });
 
     }
