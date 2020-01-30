@@ -12,19 +12,20 @@
     <link rel="apple-touch-icon" href="../icons/144x144.png" />
     <link rel="stylesheet" type="text/css" href="./css/main.css" />
     <link rel="manifest" href="./manifest.json" />
+    <link rel="shortcut icon" type="image/png" href="./icons/144x144.png" />
 
     <title>Sheba</title>
-    <script defer src="./js/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
     <script defer>
         if ("serviceWorker" in navigator) {
             window.onload = async function () {
 
                 try {
                     let reg = await navigator.serviceWorker.register("./sw.js");
-                    console.log(`Service Worker registered at ${reg.scope}`);
+                    // console.log(`Service Worker registered at ${reg.scope}`);
 
                 } catch (err) {
-                    console.error(`Bothata ke bo : ${err}`);
+                    // console.error(`Bothata ke bo : ${err}`);
                 }
             }
         }
@@ -46,9 +47,9 @@
                 </div>
                 <div class="controls">
                     <section id="volume">
-                        <button id="fullScreen">full</button>
-                        <button id="volumeUp">v+</button>
-                        <button id="volumeDown">v-</button>
+                        <button id="fullScreen">screen</button>
+                        <button id="volumeUp">v +</button>
+                        <button id="volumeDown">v -</button>
                     </section>
                     <section id="pp">
                         <button id="skipBackwards">
@@ -56,8 +57,8 @@
                         </button>
                         <button id="skipForward">>></button>
                     </section>
-                    <button id="xsp">x1.5</button>
-                    <button id="pip">pip</button>
+                    <button id="xsp">speed</button>
+                    <button id="pip">view</button>
                 </div>
             </section>
             <section class="playlist">
