@@ -4,8 +4,10 @@ const cacheName = "sheba",
         "/index.html",
         "/about.html",
         "/css/main.css",
-        "/css/about.css",
-        "/js/main.js"
+        "/js/main.js",
+        "/js/components/upload.js",
+        "/js/components/videoPlayer.js",
+        "/js/components/videos.js"
     ];
 
     self.addEventListener('install', e => {

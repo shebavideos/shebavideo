@@ -2,31 +2,45 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+:root{
+    --btn1: #0469acdc;
+    --btn2:#006eff;
+    --dark: #222;
+    --lightdark:#4242428f;
 }
 
 body {
-    background-color: #222;
+    background-color: var(--dark);
 }
 
-a {
-    text-decoration: none;
-    color: white;
-}
 
 #curVideo {
     width: 100%;
     height: 100%;
-    background-color: #4242428f;
+    background-color: var(--lightdark);
 
 }
 
 button {
     border: none;
-    color: white;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
-    background-color: rgba(4, 105, 172, 0.863);
 }
+#about {
+    color: white;
+    background-color:var(--btn1);
+    width: 250px;
+    height: 300px;
+    margin: 20vh auto;
+    padding: 20px;
+    border-radius: 2px;
+    cursor: pointer;
+  
+  }
 
 #container {
     display: grid;
@@ -50,6 +64,9 @@ header {
     height: 25px;
     width: 100px;
     margin-left: 5px;
+}
+.btn2{
+    background-color: var(--btn1);
 }
 
 
@@ -87,7 +104,6 @@ header {
 .controls {
     grid-column: 1/13;
     grid-row: 7/10;
-    background-color: rgba(8, 8, 8, 0);
     display: grid;
     grid-template-columns: repeat(12, auto);
     grid-template-rows: repeat(1, 25px);
@@ -108,12 +124,12 @@ header {
 #volume>* {
     margin-left: 5px;
     width: 50px;
-    background-color: #006eff;
+    background-color: var(--btn2);
 }
 
 #pp {
     grid-area: p;
-    background-color: #006eff;
+    background-color: var(--btn2);
     width: 100px;
     height: 30px;
     border-radius: 2px;
@@ -126,7 +142,7 @@ header {
 #pp>* {
     width: 30px;
     height: 25px;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: inherit;
 }
 
 #pp> :nth-child(2) {
@@ -137,22 +153,22 @@ header {
 #xsp {
     grid-area: x;
     border-radius: 2px;
-    background-color: #006eff;
+    background-color: var(--btn2);
 }
 
 #pip {
     grid-area: c;
     border-radius: 2px;
-    background-color: #006eff;
+    background-color: var(--btn2);
 }
 
 .playlist {
     height: 80vh;
     width: 40%;
     display: grid;
-    grid-template-columns: repeat(3, auto);
-    grid-template-rows: repeat(50, auto);
-    grid-gap: 4px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(50, 1fr);
+    gap: 8px;
     overflow-y: auto;
     overflow-x: auto;
 }
@@ -184,7 +200,6 @@ header {
     grid-row: 2/4;
     text-align: center;
     line-height: 1.5;
-    color: white;
     font-size: large;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
@@ -197,8 +212,8 @@ h3 {
 
 
 
-/* media */
-@media screen and (max-width:685px) {
+/* small tablets*/
+@media screen and (max-width: 620px) {
     .main {
         flex-flow: column;
     }
@@ -211,18 +226,19 @@ h3 {
 
     .playlist {
         width: 100%;
-        height: 50%;
-        margin-top:100px;
+        height: 60%;
+        margin-top:70px;
     }
 }
-
-a {
-    text-decoration: none;
-    color: white;
+/* large tablets & laptops */
+@media screen and (max-width: 960px) and (min-width:621px) {
+ .playlist{
+    grid-template-columns: repeat(2, 1fr);
+ }
 }
 
 #home {
-    background-color: teal;
+    background-color: var(--btn1);
     border: none;
     width: 100px;
     height: 25px;
@@ -247,16 +263,15 @@ a {
 
 .rate {
     cursor: pointer;
-    background-color:#222;
+    background-color:var(--dark);
     width: 100%;
     height: 100%;
     text-align: right;
     padding-right: 10px;
-    color: #ffffff;
+    
     border-radius: 2px;
 }
 
 .rate:hover {
-    background-color: #006eff;
-    color: white;
+    background-color: var(--btn2);
 }
