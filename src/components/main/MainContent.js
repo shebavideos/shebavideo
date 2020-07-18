@@ -1,4 +1,6 @@
 "strict mode"
+
+
 // contains important components && their dynamic logic.
 const temp = document.createElement('template');
 temp.innerHTML = `
@@ -11,7 +13,6 @@ temp.innerHTML = `
     }
     
 </style>
-<h1 id="container">main content</h1>
 `;
 
 // export main component.
@@ -21,8 +22,24 @@ class MainContent extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(temp.content.cloneNode(true));
     }
-     // default methods of a web component.
-    // connectedCallback () {}
+    // default methods of a web component.
+    connectedCallback() {
+        const root = this.shadowRoot;
+        const components = [
+            import("../videoPlayer/Player.js"),
+            import("../videoPlayList/PlayList.js")
+        ];
+
+        Promise.all(components)
+            .then(components => {
+                components.forEach(component => 
+                  {
+                    root.appendChild(component.default);
+                    console.dir(component);
+                  });
+            })
+            .catch(err => console.error(err));
+    }
     // disconnectedCallback () {}
     // attributeChangedCallback (attrName, oldVal, newVal){}
     // adoptedCallback () {}
