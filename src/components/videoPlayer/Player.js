@@ -1,19 +1,18 @@
 "strict mode"
+import styles from "./styles";
+import controls from "./controls/videoControls";
+import dropMenu from "./controls/dropupMenu";
 
 const temp = document.createElement('template');
 temp.innerHTML = `
 <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        color: #ffff;
-    }
-    
+${styles()}
 </style>
-<section id="videoPlayer"> 
-<h2> Video player </h2> 
-</section>
+<div id="videoPlayer"> 
+    <video ></video>
+    ${controls()}
+    ${dropMenu()}
+</div>
 `;
 
 class Player extends HTMLElement {
@@ -22,6 +21,7 @@ class Player extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(temp.content.cloneNode(true));
     }
+    // connectedCallback(){}
     // disconnectedCallback () {}
     // attributeChangedCallback (attrName, oldVal, newVal){}
     // adoptedCallback () {}

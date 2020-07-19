@@ -3,6 +3,7 @@
 const temp = document.createElement('template');
 temp.innerHTML = `
 <style>
+/* for all media queries*/
     * {
         box-sizing: border-box;
         margin: 0;
@@ -14,6 +15,8 @@ temp.innerHTML = `
         position: fixed;
         bottom: 20px;
         font-size: 12px;
+        width:100%;
+        text-align:center;
     }
 </style>
 <footer >&copy; 2020 KT Motshoana</footer>

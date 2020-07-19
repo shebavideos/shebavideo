@@ -11,8 +11,16 @@ temp.innerHTML = `
         padding: 0;
         color: #ffff;
     }
-    
+    main{
+        margin-top:30px;
+        width:100%;
+        display: flex;
+        justify-content:center;
+        aligin-items:center;
+        flex-flow: row wrap;
+    }
 </style>
+<main></main>
 `;
 
 // export main component.
@@ -22,9 +30,13 @@ class MainContent extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(temp.content.cloneNode(true));
     }
-    // default methods of a web component.
+    /**
+     * @description 
+     * mounts VideoPlayer && VideoPlayList components, 
+     * once MainContent is mounted.
+     */
     connectedCallback() {
-        const root = this.shadowRoot;
+
         const components = [
             import("../videoPlayer/Player.js"),
             import("../videoPlayList/PlayList.js")
@@ -32,17 +44,13 @@ class MainContent extends HTMLElement {
 
         Promise.all(components)
             .then(components => {
-                components.forEach(component => 
-                  {
-                    root.appendChild(component.default);
-                    console.dir(component);
-                  });
+                components.forEach(
+                    component => {
+                        this.shadowRoot.querySelector('main').appendChild(component.default);
+                    });
             })
             .catch(err => console.error(err));
     }
-    // disconnectedCallback () {}
-    // attributeChangedCallback (attrName, oldVal, newVal){}
-    // adoptedCallback () {}
 }
 window.customElements.define('main-card', MainContent);
 

@@ -14,6 +14,11 @@ module.exports = {
                     'file-loader'
                 ]
             }, {
+                test: /\.svg$/,
+                use: [
+                    'svg-inline-loader'
+                ]
+            }, {
                 test: /\.css$/,
                 use: [
                     MiniCssExtractPlugin.loader, 'css-loader'
