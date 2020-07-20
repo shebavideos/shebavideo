@@ -1,4 +1,4 @@
-import pip from "./picture_in_picture.svg";
+import pip from "./svg/picture_in_picture.svg";
 
 export default () => {
     return(

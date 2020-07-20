@@ -1,9 +1,9 @@
-import fullScreen from "./full_screen.svg";
-import volume from "./volume.svg";
-import skipBack from "./skipback.svg";
-import playBtn from "./playbutton.svg";
-import skipAhead from "./skipahead.svg";
-import settings from "./settings.svg";
+import fullScreen from "./svg/full_screen.svg";
+import volume from "./svg/volume.svg";
+import skipBack from "./svg/skipback.svg";
+import playBtn from "./svg/playbutton.svg";
+import skipAhead from "./svg/skipahead.svg";
+import settings from "./svg/settings.svg";
 export default (dropMenu) => {
     return (
         `

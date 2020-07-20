@@ -52,7 +52,10 @@ export default () => {
     #controls:hover{
         border:1px solid white;
     }
-   
+    /* disables click events on all svgs in video controller.*/
+    svg{
+      pointer-events: none;
+    }
     svg:hover{
         stroke: white;
     }
