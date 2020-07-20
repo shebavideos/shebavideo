@@ -1,20 +1,37 @@
-import settings from "./settings.svg";
+import pip from "./picture_in_picture.svg";
 
 export default () => {
     return(
         `<section class="dropup">
             <aside class="dropup-content">
-                <span>pip</span>
+                <button name="pip" title="picture in picture mode">${pip}</button>
                 <hr/>
-                <span>speed</span>
+                <button name="speed" >speed</button>
                 <hr/>
-                <span>0.25</span>
+                <button name="0.25" >0.25</button>
                 <hr/>
-                <span>0.75</span>
+                <button name="0.75" >0.75</button>
                 <hr/>
-                <span >1</span>   
-            </aside>
-            <button class="dropupbtn">${settings}</button>
+                <button name="1" >1</button> 
+                <hr/>
+                <button name="1.25" >1.25</button>
+                <hr/>   
+                <button name="1.75" >1.75</button>
+                <hr/>
+                <button name="2" >2</button>
+                <hr/>
+                <button name="2.5" >2.5</button>
+                <hr/>
+                <button name="3" >3</button> 
+                <hr/>
+                <button name="3.5" >3.5</button>
+                <hr/>
+                <button name="4" >4</button>
+                <hr/>
+                <button name="4.5" >4.5</button> 
+                 <hr/>
+                <button name="5" >5</button>      
+            </aside>      
        </section>
         `
     );

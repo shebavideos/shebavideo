@@ -3,8 +3,8 @@ import volume from "./volume.svg";
 import skipBack from "./skipback.svg";
 import playBtn from "./playbutton.svg";
 import skipAhead from "./skipahead.svg";
-
-export default () => {
+import settings from "./settings.svg";
+export default (dropMenu) => {
     return (
         `
   <section id="controls">
@@ -23,6 +23,8 @@ export default () => {
   <button name="skipahead">
       ${skipAhead}
   </button>
+  <button class="dropupbtn" name="dropupbtn">${settings}</button>
+  ${dropMenu}
 </section>
 `
     );

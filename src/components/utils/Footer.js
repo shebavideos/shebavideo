@@ -17,6 +17,7 @@ temp.innerHTML = `
         font-size: 12px;
         width:100%;
         text-align:center;
+        z-index:2;
     }
 </style>
 <footer >&copy; 2020 KT Motshoana</footer>

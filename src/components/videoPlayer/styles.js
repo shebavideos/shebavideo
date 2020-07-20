@@ -6,6 +6,7 @@ export default () => {
         padding: 0;
         color: #ffff;
     }
+
     /*mobile version*/
     #videoPlayer{
       margin-bottom:10px;
@@ -14,31 +15,31 @@ export default () => {
       display:grid;
       grid-template-column:repeat(12,auto);
       grid-template-rows: repeat(12, auto);
-      grip-gap:5px;
+      grip-gap:2px;
     }
     video{
         background-color:#807878;
         width:100%;
         height:100%;
-        grid-column:1/13;
-        grid-row:1/11;
+        grid-column:1/12;
+        grid-row:1/12;
+    }
+    video:hover{
+        border:1px solid white;
     }
     #controls{
-        padding-left:5px;
-        padding-right:5px;
+        padding-left:30px;
         width:100%;
-        height:100%;
-        z-index:1;
-        grid-column:1/10;
-        grid-row:12/13;
+        height:50px;
+        z-index:2;
+        grid-column:1/12;
+        grid-row:12/12;
         align-content:center;
         display:flex;
         align-items:center;
         justify-content:space-between;
     }
-    #controls:hover{
-        background-color:#2324285e;
-    }
+    
     #controls > button[name="playbtn"] {
           width:50px;
     }
@@ -48,6 +49,9 @@ export default () => {
         border:none;
         cursor:pointer;
     }
+    #controls:hover{
+        border:1px solid white;
+    }
    
     svg:hover{
         stroke: white;
@@ -55,51 +59,59 @@ export default () => {
     /* The container <section> - needed to position the dropup content */
     .dropup {
         position: relative;
-        display: inline-block;
-        grid-column:11/13;
-        grid-row:12/13;
-        width:50px;
-        height:100%;
+        display: inline-block;  
       }
     
-    .dropupbtn {
-        background-color:transparent;
-        border:none;
-        cursor:pointer;
-       
-      }
-    
-    /* Dropup content (Hidden by Default) */
+    /* Dropup content (Hidden by Default)
+     * display none does the trick
+     */
     .dropup-content {
-        display: ;
+        display:none ;
         position: absolute;
         background-color: none;
         width: 80px;
-        max-height:150px;
+        height:100px;
         overflow-y:auto;
-        bottom:60px;
-        right:0px;
-        z-index: 1;
+        bottom:30px;
+        right:2px;
         cursor:pointer;
+        scrollbar-width: thin;          /* "auto" or "thin"  */
+        scrollbar-color: #008CFF transparent;
       }
-      /* Links inside the dropup */
-    .dropup-content span {
-        padding: 5px;
+      .dropup-content::-webkit-scrollbar {
+        width: 12px;               /* width of the entire scrollbar */
+      }
+      .dropup-content::-webkit-scrollbar-track {
+        background: transparent;        /* color of the tracking area */
+      }
+      .dropup-content::-webkit-scrollbar-thumb {
+        background-color: #008CFF;    /* color of the scroll thumb */
+        border-radius: 20px;       /* roundness of the scroll thumb */
+        border: 3px solid transparent;  /* creates padding around scroll thumb */
+      }
+      /* Buttons inside the dropup */
+    .dropup-content button {
+        height:30px;
+        width:100%;
+        border:none;
+        cursor:pointer;
+        background-color:transparent;
         text-decoration: none;
         display: block;
+        text-align:center;
         }
     /* Change color of dropup links on hover */
-    .dropup-content a:hover {background-color: #ddd}
-   
+    .dropup-content button:hover {
+        background-color: #222;
+    }
+    /* Affects the picture in picture svg */
+    .dropup-content button[name="pip"] > svg {
+     width:30px;
+     height:25px;
+    }
+    
     /* Show the dropup menu on hover */
-    .dropup:hover .dropup-content {
-        display: block;
-        }
 
-    /* Change the background color of the dropup button when the dropup content is shown */
-    .dropup:hover .dropbtn {
-        background-color: #2980B9;
-        }
 
     /*tablet version*/
     /*pc version*/

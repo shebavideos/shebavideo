@@ -5,10 +5,8 @@ import NavBar from "./utils/NavBar";
 import Footer from "./utils/Footer";
 
 /**
- * 
  * @param {HTMLElement} root 
- * Appends NavBar, Main & Footer
- *  components to root HTMLElement.
+ * @description Appends NavBar, Main & Footer components to root HTMLElement.
  */
 function App(root) {
     [NavBar, Main, Footer]
