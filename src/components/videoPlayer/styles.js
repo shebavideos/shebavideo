@@ -27,6 +27,78 @@ export default () => {
     video:hover{
         border:1px solid white;
     }
+
+    input[name="setvolume"]{
+       display:none;
+      -webkit-appearance:none;
+       grid-column:2/3;
+       grid-row:9/10;
+       background:transparent;
+       z-index:2;
+       width:100px;
+       height:5px;
+       margin-left:25%;
+       border:1px solid white;
+       border-radius:1px;
+       transform: rotate(-90deg);
+    }
+
+    input[name="setvolume"]:focus{
+      outline:none;
+    }
+
+    input[name="setvolume"]::-webkit-slider-runnable-track{
+     width:100px;
+     cursor:pointer;
+     animate:0.2s;
+     border-radius:2px;
+    }
+    /*
+    input[name="setvolume"]:focus::-webkit-slider-runnable-track{
+      background:transparent;
+      width:100%;
+      height:100%;
+    }
+    */
+
+    input[name="setvolume"]::-webkit-slider-thumb{
+      -webkit-appearance:none;
+      height:15px;
+      width:20px;
+      background:#008CFF;
+      border:none;
+      border-radius:2px;
+      cursor:pointer;
+    }
+    input[name="setvolume"]::-moz-range-thumb{
+      
+      height:15px;
+      width:20px;
+      background:#008CFF;
+      cursor:pointer;
+      border:none;
+      border-radius:2px;
+    }
+    input[name="setvolume"]::-moz-range-track{
+      background:transparent;
+      width:100%;
+      height:100%;
+    }
+    input[name="setvolume"]::-ms-track{
+      background:transparent;
+      width:100%;
+      height:100%;
+    }
+    input[name="setvolume"]::-ms-thumb{
+      
+      height:15px;
+      width:20px;
+      background:#008CFF;
+      cursor:pointer;
+      border:none;
+    }
+   
+    
     #controls{
         padding-left:30px;
         width:100%;
@@ -52,6 +124,7 @@ export default () => {
     #controls:hover{
         border:1px solid white;
     }
+
     /* disables click events on all svgs in video controller.*/
     svg{
       pointer-events: none;

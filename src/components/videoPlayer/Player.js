@@ -15,6 +15,8 @@ ${styles()}
 </div>
 `;
 
+
+
 class Player extends HTMLElement {
     constructor() {
         super();
@@ -31,30 +33,47 @@ class Player extends HTMLElement {
             video = root.querySelector('video'),
             fullscreenBtn = root.querySelector('button[name="fullscreen"'),
             volumeBtn = root.querySelector('button[name="volume"]'),
+            volumeRange = root.querySelector('input[name="setvolume"]'),
             skipBackBtn = root.querySelector('button[name="skipback"]'),
             skipForwardBtn = root.querySelector('button[name="skipahead"'),
-            playBtn = root.querySelector('button[name="playbtn"]');
-
+            playBtn = root.querySelector('button[name="playbtn"]'),
+            toggleVolumeRange = this.toggleHTMLElement();
+        
         fullscreenBtn.onclick = e => {
             e.stopImmediatePropagation();
             video.requestFullscreen();
             fullscreenBtn.blur();
         }
+        
+        volumeRange.onchange = e => {
+           
+            switch(Number(1 * e.target.value / 100).toFixed(1)){
+                case 0.0:
+                    video.volume = 0;
+                    break
+                case 1.0:
+                 video.volume = 1;
+                 break
+                default:
+                    video.volume = Number(1 * e.target.value / 100).toFixed(1);
+                    break
+            }
+            volumeRange.blur();
+        }
+
         volumeBtn.onclick = e => {
             e.stopImmediatePropagation();
-            let increase =  video.volume !== 1 ,
-            decrease = video.volume !== 0;
-            // control volume.
-           
-            if(increase){
-              video.volume = Number(video.volume + 0.1).toFixed(1);
-              console.log("increase");
-              console.log(video.volume);
-            }else {
-                video.volume = Number(video.volume - 0.1).toFixed(1);
-                console.log("decrease");
-                console.log(video.volume);
+            toggleVolumeRange.setVisibility();
+            switch(toggleVolumeRange.getVisibility()){
+                case true:
+                    volumeRange.style.display = 'block';
+                    break
+                case false:
+                    volumeRange.style.display ='none';
+                    break
+
             }
+            
             volumeBtn.blur();
         }
 
@@ -77,21 +96,20 @@ class Player extends HTMLElement {
         const settingsBtn = root.querySelector('button[name="dropupbtn"]'),
             settings = root.querySelector('.dropup-content'),
             nodeChildren = [...settings.children].filter(node => node['nodeName'] === 'BUTTON'),
-            { getVisibility, setVisibility } = this.toggleSettingsMenu();
+            settingsMenu = this.toggleHTMLElement();
 
         settingsBtn.onclick = e => {
-            setVisibility();
-            switch (getVisibility()) {
+            settingsMenu.setVisibility();
+            switch (settingsMenu.getVisibility()) {
                 case true:
                     settings.style.display = 'block';
-                    nodeChildren.forEach(node => node.addEventListener('click', this.settings(root)));
-                    settingsBtn.blur();
+                    nodeChildren.forEach(node => node.addEventListener('click', this.settings(root))); 
                     break
                 default:
                     settings.style.display = 'none';
-                    settingsBtn.blur();
                     break
             }
+            settingsBtn.blur();
         }
     }
     /**
@@ -110,8 +128,8 @@ class Player extends HTMLElement {
 
 
     settings(root) {
-       
-        return this.closureMethod(root,this.getParent, this.changeSettings);
+
+        return this.closureMethod(root, this.getParent, this.changeSettings);
     }
     /**
      * @param {#shadowroot} root 
@@ -127,12 +145,12 @@ class Player extends HTMLElement {
                 getParent(e.target, parent => {
                     changeSettings(parent);
                 });
-    
+
             } else {
                 changeSettings(e.target, root);
             }
         }
-        
+
     }
     /**
      * 
@@ -141,7 +159,7 @@ class Player extends HTMLElement {
      * @description changes dropup menu settings as desired.
      */
     changeSettings(target, root) {
-        
+
         const settingsMenu = {
             'pip': (root) => {
                 console.log(root)
@@ -158,7 +176,7 @@ class Player extends HTMLElement {
 
                 const video = root.querySelector('video');
                 video.playBackRate = 1;
-               
+
             }
 
         }
@@ -175,7 +193,7 @@ class Player extends HTMLElement {
 
                 const video = root.querySelector('video');
                 video.playBackRate = xspeed;
-                
+
             }
         });
 
@@ -186,9 +204,9 @@ class Player extends HTMLElement {
 
 
     /**
-     * @description toggles visibility of className[.dropup-content] HTMLElement in DOM.
+     * @description toggles visibility of an HTMLElement in the DOM.
      */
-    toggleSettingsMenu() {
+    toggleHTMLElement() {
         var visible = false,
             setVisibility = () => (visible ? visible = false : visible = true),
             getVisibility = () => visible;
@@ -198,6 +216,8 @@ class Player extends HTMLElement {
         });
 
     }
+
+    
 
     /**
      * @param {blob} source
