@@ -11,11 +11,8 @@ ${styles()}
 <div id="videoPlayer"> 
     <video ></video>
     ${controls(dropMenu())}
-  
 </div>
 `;
-
-
 
 class Player extends HTMLElement {
     constructor() {
@@ -38,22 +35,22 @@ class Player extends HTMLElement {
             skipForwardBtn = root.querySelector('button[name="skipahead"'),
             playBtn = root.querySelector('button[name="playbtn"]'),
             toggleVolumeRange = this.toggleHTMLElement();
-        
+
         fullscreenBtn.onclick = e => {
             e.stopImmediatePropagation();
             video.requestFullscreen();
             fullscreenBtn.blur();
         }
-        
+
         volumeRange.onchange = e => {
-           
-            switch(Number(1 * e.target.value / 100).toFixed(1)){
+
+            switch (Number(1 * e.target.value / 100).toFixed(1)) {
                 case 0.0:
                     video.volume = 0;
                     break
                 case 1.0:
-                 video.volume = 1;
-                 break
+                    video.volume = 1;
+                    break
                 default:
                     video.volume = Number(1 * e.target.value / 100).toFixed(1);
                     break
@@ -64,16 +61,16 @@ class Player extends HTMLElement {
         volumeBtn.onclick = e => {
             e.stopImmediatePropagation();
             toggleVolumeRange.setVisibility();
-            switch(toggleVolumeRange.getVisibility()){
+            switch (toggleVolumeRange.getVisibility()) {
                 case true:
                     volumeRange.style.display = 'block';
                     break
                 case false:
-                    volumeRange.style.display ='none';
+                    volumeRange.style.display = 'none';
                     break
 
             }
-            
+
             volumeBtn.blur();
         }
 
@@ -103,7 +100,7 @@ class Player extends HTMLElement {
             switch (settingsMenu.getVisibility()) {
                 case true:
                     settings.style.display = 'block';
-                    nodeChildren.forEach(node => node.addEventListener('click', this.settings(root))); 
+                    nodeChildren.forEach(node => node.addEventListener('click', this.settings(root)));
                     break
                 default:
                     settings.style.display = 'none';
@@ -162,7 +159,7 @@ class Player extends HTMLElement {
 
         const settingsMenu = {
             'pip': (root) => {
-                console.log(root)
+               
                 const video = root.querySelector('video');
                 if (!root.pictureInPictureElement) {
                     video.requestPictureInPicture()
@@ -202,7 +199,6 @@ class Player extends HTMLElement {
         target.blur();
     }
 
-
     /**
      * @description toggles visibility of an HTMLElement in the DOM.
      */
@@ -216,8 +212,6 @@ class Player extends HTMLElement {
         });
 
     }
-
-    
 
     /**
      * @param {blob} source

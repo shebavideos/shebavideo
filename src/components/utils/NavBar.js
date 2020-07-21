@@ -10,16 +10,28 @@ temp.innerHTML = `
         color: #ffff;
     }
     nav {
-        // position: fixed;
-        // top: 20px;
+       float:right;
+        margin: 20px;
        
     }
-    button {
-        color: #ffff;
+    nav * {
+        cursor:pointer;
+    }
+    input[type="file"]{
+        margin-right:20px;
+    }
+    button{
+        border:none;
+        height:30px;
+        width:60px;
+        background-color:#008CFF;
     }
     
 </style>
-<nav> <button> About </button> </nav>
+<nav> 
+    <input type="file" />
+    <button> About </button>
+ </nav>
 `;
 
 // export main component.

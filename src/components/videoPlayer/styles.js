@@ -9,14 +9,43 @@ export default () => {
 
     /*mobile version*/
     #videoPlayer{
-      margin-bottom:10px;
-      width:100vw;
+      padding:2px;
+      margin-bottom:2px;
+      width:100%;
       height:300px;
       display:grid;
       grid-template-column:repeat(12,auto);
       grid-template-rows: repeat(12, auto);
       grip-gap:2px;
     }
+    @media only screen and (min-width:600px){
+      #videoPlayer{
+         height:450px
+          }
+      }
+    @media only screen and (min-width:900px){
+      #videoPlayer{
+       
+          width:500px;
+          height:450px;
+          }
+      }
+    @media only screen and (min-width:1100px){
+      #videoPlayer{
+        height:500px;
+          width:600px;   
+          }
+      }
+    @media only screen and (min-width:1200px){
+      #videoPlayer{
+          width:700px;   
+          }
+      }
+    @media only screen and (min-width:1300px){
+      #videoPlayer{
+          width:800px;   
+          }
+      }
     video{
         background-color:#807878;
         width:100%;
@@ -126,11 +155,12 @@ export default () => {
     }
 
     /* disables click events on all svgs in video controller.*/
-    svg{
-      pointer-events: none;
-    }
+   
     svg:hover{
         stroke: white;
+    }
+    button[name="pip"] svg{
+      pointer-events: none;
     }
     /* The container <section> - needed to position the dropup content */
     .dropup {

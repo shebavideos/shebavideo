@@ -17,7 +17,19 @@ temp.innerHTML = `
         display: flex;
         justify-content:center;
         aligin-items:center;
-        flex-flow: row wrap;
+        flex-flow: column wrap;
+    }
+    @media only screen and (min-width:600px){
+        main{
+         
+            margin:auto;
+        }
+    }
+    @media only screen and (min-width:900px){
+        main{
+            margin-top:50px 0;
+            flex-flow:row nowrap;
+        }
     }
 </style>
 <main></main>

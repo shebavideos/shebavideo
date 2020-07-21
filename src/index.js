@@ -4,8 +4,8 @@ import App from "./components/App";
 
 document.body.style.backgroundColor = '#222';
 document.body.style.color = 'white';
-document.body.style.margin = '0px';
-document.body.style.padding = '15px';
+document.body.style.margin = '0';
+document.body.style.padding = '0';
 document.body.style.boxSizing = 'border-box';
 document.body.style.textDecoration = 'none';
 
