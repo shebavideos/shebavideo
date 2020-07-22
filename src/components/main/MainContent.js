@@ -12,7 +12,7 @@ temp.innerHTML = `
         color: #ffff;
     }
     main{
-        margin-top:30px;
+        margin-top:30px auto;
         width:100%;
         display: flex;
         justify-content:center;

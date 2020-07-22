@@ -13,13 +13,19 @@ temp.innerHTML = `
     
     footer {
         position: fixed;
-        left:calc(50% - 50px);
+        right:calc(50% - 50px);
         bottom: 20px;
         font-size: 13px;
         width:100px;
         text-align:center;
         z-index:2;
     }
+    @media only screen and (min-width:900px){
+        footer{
+            right:calc(30% - 50px);
+          
+            }
+        }
 </style>
 <footer >&copy; 2020 KT Motshoana</footer>
 `;

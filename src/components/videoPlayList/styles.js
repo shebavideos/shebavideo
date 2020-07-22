@@ -45,12 +45,12 @@ export default () => {
     .duration {
         z-index:2;
         width:100%;
-        height:100%;
         grid-column:2/13;
         grid-row: 11;
-        text-align:right center;
+        text-align:right;
+        font-size:12px;
         background:#222;
-        padding:3px;
+        padding:1px;
         overflow:hidden;
     }
     
@@ -91,7 +91,7 @@ export default () => {
     }
     @media only screen and (min-width:900px){
         #videoPlaylist{
-            margin-left:20px;
+            margin-left:4px;
             width:280px;
             height:450px;
             grid-template-columns: repeat(2, 1fr);
@@ -100,7 +100,6 @@ export default () => {
     }
     @media only screen and (min-width:1000px){
         #videoPlaylist{
-            margin-left:20px;
             width:400px;
             height:450px;
             grid-template-columns: repeat(3, 1fr);
@@ -108,7 +107,6 @@ export default () => {
     }
     @media only screen and (min-width:1100px){
         #videoPlaylist{
-            margin-left:20px;
             width:500px;
             height:450px;
         

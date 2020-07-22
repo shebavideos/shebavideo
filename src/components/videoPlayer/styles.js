@@ -1,5 +1,5 @@
 export default () => {
-    return (`
+  return (`
     * {
         box-sizing: border-box;
         margin: 0;
@@ -9,35 +9,33 @@ export default () => {
 
     /*mobile version*/
     #videoPlayer{
-      padding:2px;
-      margin-bottom:2px;
       width:100%;
-      height:300px;
+      height:350px;
       display:grid;
-      grid-template-column:repeat(12,auto);
+      grid-template-columns:repeat(12,auto);
       grid-template-rows: repeat(12, auto);
       grip-gap:2px;
     }
     @media only screen and (min-width:600px){
       #videoPlayer{
-         height:450px
+         height:470px
           }
       }
     @media only screen and (min-width:900px){
       #videoPlayer{
-       
-          width:500px;
-          height:450px;
+          width:650px;
+          height:500px;
           }
       }
     @media only screen and (min-width:1100px){
       #videoPlayer{
-        height:500px;
+          height:550px;
           width:600px;   
           }
       }
     @media only screen and (min-width:1200px){
       #videoPlayer{
+          height:580px;
           width:700px;   
           }
       }
@@ -50,8 +48,9 @@ export default () => {
         background-color:#807878;
         width:100%;
         height:100%;
-        grid-column:1/12;
+        grid-column:1/13;
         grid-row:1/12;
+         cursor:pointer;
     }
     video:hover{
         border:1px solid white;
@@ -133,7 +132,7 @@ export default () => {
         width:100%;
         height:50px;
         z-index:2;
-        grid-column:1/12;
+        grid-column:1/13;
         grid-row:12/12;
         align-content:center;
         display:flex;
