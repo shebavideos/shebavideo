@@ -20,7 +20,7 @@ temp.innerHTML = `
         text-align:center;
         z-index:2;
     }
-    @media only screen and (min-width:900px){
+    @media only screen and (min-width:1000px){
         footer{
             right:calc(30% - 50px);
           

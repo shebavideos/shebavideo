@@ -21,16 +21,18 @@ export default () => {
          height:470px
           }
       }
-    @media only screen and (min-width:900px){
+    @media only screen and (min-width:800px){
       #videoPlayer{
-          width:650px;
+        margin:auto;
+          width:780px;
           height:500px;
           }
       }
+     
     @media only screen and (min-width:1100px){
       #videoPlayer{
           height:550px;
-          width:600px;   
+          width:690px;   
           }
       }
     @media only screen and (min-width:1200px){

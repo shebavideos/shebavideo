@@ -89,24 +89,32 @@ export default () => {
             grid-template-columns: repeat(3, 1fr);
         }
     }
-    @media only screen and (min-width:900px){
+    @media only screen and (min-width:800px){
         #videoPlaylist{
-            margin-left:4px;
-            width:280px;
+            margin:auto;
+            width:90%;
             height:450px;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             
         }
     }
-    @media only screen and (min-width:1000px){
+    @media only screen and (min-width:900px){
         #videoPlaylist{
-            width:400px;
-            height:450px;
-            grid-template-columns: repeat(3, 1fr);
+            width:200px;
+            grid-template-columns: repeat(1, 1fr);
+            
         }
     }
     @media only screen and (min-width:1100px){
         #videoPlaylist{
+            width:350px;
+            height:420px;
+
+        }
+    }
+    @media only screen and (min-width:1200px){
+        #videoPlaylist{
+            grid-template-columns: repeat(3,1fr);
             width:500px;
             height:450px;
         
