@@ -4,9 +4,10 @@ import svgBtn from "./svg/remove.svg";
 
 const temp = document.createElement('template');
 temp.innerHTML = `
-${styles()}
+<style>
+    ${styles()}
+</style>
 <section id="videoPlaylist"> 
-    
 </section>
 `;
 
@@ -26,8 +27,6 @@ class PlayList extends HTMLElement {
             list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
             list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
             list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
-              list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
-            list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
             list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
             list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
             list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
@@ -36,7 +35,9 @@ class PlayList extends HTMLElement {
             list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
             list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
             list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
-              list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
+            list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
+            list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
+            list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
             list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
            
     }
