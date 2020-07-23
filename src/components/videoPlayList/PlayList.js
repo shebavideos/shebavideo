@@ -1,6 +1,13 @@
 "strict mode"
 import styles from "./styles";
 import svgBtn from "./svg/remove.svg";
+import {
+    subscribe,
+    watch,
+    watchNext,
+    remove
+} from "../../context/videos/State";
+
 
 const temp = document.createElement('template');
 temp.innerHTML = `
@@ -25,22 +32,7 @@ class PlayList extends HTMLElement {
         list = root.querySelector('#videoPlaylist');
 
             list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
-            list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
-            list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
-            list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
-            list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
-            list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
-            list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
-            list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
-            list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
-            list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
-            list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
-            list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
-            list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
-            list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
-            list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
-            list.appendChild(this.videoElement('#','07:30:53', 2, 'hello tokyo'));
-           
+          
     }
     /**
      * 

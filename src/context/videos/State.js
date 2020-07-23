@@ -48,7 +48,7 @@ export const watchNext = (id) => {
 /**
  * 
  * @param {ArrayLike} videos 
- * @description adds video(s) to redux store.
+ * @description adds video(s) uploaded to redux store.
  */
 export const uploadVideos = (videos) => {
     dispatch({ type: UPLOADED, payload: videos });
