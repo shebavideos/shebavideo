@@ -33,7 +33,7 @@ class PlayList extends HTMLElement {
     }
     /**
      * @param {this} playlist
-     * @description listens for new added videoObjects in the redux store.
+     * @description listens for changes to redux store.
      */
     listener(playlist) {
 

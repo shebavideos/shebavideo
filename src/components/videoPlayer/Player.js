@@ -2,6 +2,7 @@
 import styles from "./styles";
 import controls from "./controls/videoControls";
 import dropMenu from "./controls/dropupMenu";
+import { getState, subscribe } from "../../context/videos/State";
 
 const temp = document.createElement('template');
 temp.innerHTML = `
@@ -24,6 +25,7 @@ class Player extends HTMLElement {
 
     connectedCallback() {
         this.videoControls();
+        subscribe(this.listener(this));
     }
 
     videoControls() {
@@ -224,6 +226,20 @@ class Player extends HTMLElement {
             const video = root.querySelector('video');
             video.src = source;
             video.autoplay = true;
+        }
+    }
+   /**
+    * 
+    * @param {this
+    * @description} player listens for changes to redux store.
+    */
+    listener (player){
+        return () => {
+            const state = getState();
+            if(state.watch !== null){
+                player.playVideo(state.watch['src']);
+            }
+
         }
     }
 
