@@ -28,41 +28,39 @@ class PlayList extends HTMLElement {
     }
 
     connectedCallback() {
-        const listener = this.listener(this);
-        subscribe(listener);
+
+        subscribe(this.listener(this));
     }
     /**
+     * @param {this} playlist
      * @description listens for new added videoObjects in the redux store.
      */
-    listener(root) {
+    listener(playlist) {
 
         return () => {
-            console.log("video playlist listener");
-
+            
             const state = getState();
 
-            const videoPlaylist = root.shadowRoot.querySelector('#videoPlaylist');
+            const videoPlaylist = playlist.shadowRoot.querySelector('#videoPlaylist');
 
             const visibleVideos = [...videoPlaylist.children].reduce((accumulator, videoComponent) => {
-                accumulator.push(videoComponent.getAttribute('id'));
+                accumulator.push(videoComponent.getAttribute('data-name'));
                 return accumulator;
             }, []);
 
             let loadedVideos = state.videos;
-            
-            console.log(visibleVideos);
 
             if (visibleVideos.length > 0) {
                 for (let videoObject of loadedVideos) {
-                    if (visibleVideos.includes(videoObject.id)) {
-                        loadedVideos = loadedVideos.filter(source => source.id !== videoObject.id);
+                    if (visibleVideos.includes(videoObject.name)) {
+                        loadedVideos = loadedVideos.filter(source => source.name !== videoObject.name);
                     }
                 }
-                console.log("not visible videos")
-                console.log(loadedVideos);
+              
+                playlist.displayVideo(loadedVideos);
             } else {
 
-                root.displayVideo(loadedVideos);
+                playlist.displayVideo(loadedVideos);
 
             }
         }
@@ -109,6 +107,7 @@ class PlayList extends HTMLElement {
         const component = document.createElement('nextVideo');
         component.classList.add('nextVideo');
         component.id = source.id;
+        component.setAttribute('data-name', source.name);
         component.onclick = e => {
             e.stopImmediatePropagation();
             watch(source.id);

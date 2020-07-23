@@ -31,11 +31,11 @@ export default function reducer(state = {
         case UPLOADED:
             
             const alreadyUploaded = state.videos.reduce((acc,cur) => {
-                 acc.push(cur.id);
+                 acc.push(cur.name);
                  return acc;
             },[]);
             
-            const uploads = action.payload.filter(object => !alreadyUploaded.includes(object.id));
+            const uploads = action.payload.filter(object => !alreadyUploaded.includes(object.name));
 
             return {
                 ...state,

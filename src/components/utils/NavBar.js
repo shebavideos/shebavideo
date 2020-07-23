@@ -1,6 +1,6 @@
 "strict mode"
 import { uploadVideos } from "../../context/videos/State";
-
+import { nanoid } from "nanoid";
 
 const temp = document.createElement('template');
 temp.innerHTML = `
@@ -84,7 +84,7 @@ class Navbar extends HTMLElement {
 
             if (formatIsOkay && typeIsOkay) {
                 videos.push({
-                    id: `${i}`,
+                    id: nanoid(),
                     name,
                     type,
                     size,
