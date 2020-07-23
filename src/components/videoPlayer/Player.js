@@ -25,7 +25,61 @@ class Player extends HTMLElement {
 
     connectedCallback() {
         this.videoControls();
+        this.keyBoard();
         subscribe(this.listener(this));
+    }
+    /**
+     * @descriptions listens for keyboard controls.
+     */
+    keyBoard() {
+        const root = this.shadowRoot,
+            video = root.querySelector('video'),
+            keys = {
+
+                80: pip,
+                40: playpause,
+                32: playpause,
+                13: playpause,
+                39: skip,
+                37: skip
+            }
+        function playpause() {
+
+            video.paused ? video.play() : video.pause()
+
+        }
+
+        function skip(command) {
+            if (command === "forward") {
+                video.currentTime += 15;
+            } else if (command === "backward") {
+                video.currentTime -= 15;
+            }
+        }
+        function pip() {
+            if (document.pictureInPictureEnabled ) {
+                if (!document.pictureInPictureElement) {
+                    video.requestPictureInPicture()
+                        .catch(err => console.error(err));
+                } else {
+                    document.exitPictureInPicture()
+                        .catch(err => console.error(err));
+                }
+            }
+
+        }
+        document.onkeydown = e => {
+            e.stopImmediatePropagation();
+
+            if(e.keyCode === 39){
+                keys[e.keyCode]("forward");
+            }else if(e.keyCode === 37){
+                keys[e.keyCode]("backward");
+            }else if (/(80|40|32|13)/.test(e.keyCode)){
+                keys[e.keyCode]();
+            }
+          
+        }
     }
 
     videoControls() {
@@ -38,6 +92,12 @@ class Player extends HTMLElement {
             skipForwardBtn = root.querySelector('button[name="skipahead"'),
             playBtn = root.querySelector('button[name="playbtn"]'),
             toggleVolumeRange = this.toggleHTMLElement();
+
+        video.onclick = e => {
+            e.stopImmediatePropagation();
+            video.paused ? video.play() : video.pause()
+            playBtn.blur();
+        }
 
         fullscreenBtn.onclick = e => {
             e.stopImmediatePropagation();
@@ -162,20 +222,23 @@ class Player extends HTMLElement {
 
         const settingsMenu = {
             'pip': (root) => {
-               
-                const video = root.querySelector('video');
-                if (!root.pictureInPictureElement) {
-                    video.requestPictureInPicture()
-                        .catch(err => console.error(err));
-                } else {
-                    root.exitPictureInPicture()
-                        .catch(err => console.error(err));
+
+                if (document.pictureInPictureEnabled) {
+                    const video = root.querySelector('video');
+                    if (!document.pictureInPictureElement) {
+                        video.requestPictureInPicture()
+                            .catch(err => console.error(err));
+                    } else {
+                       
+                        document.exitPictureInPicture()
+                            .catch(err => console.error(err));
+                    }
                 }
             },
             'speed': (root) => {
 
                 const video = root.querySelector('video');
-                video.playBackRate = 1;
+                video.playbackRate = 1;
 
             }
 
@@ -192,7 +255,7 @@ class Player extends HTMLElement {
             settingsMenu[`${xspeed}`] = (root) => {
 
                 const video = root.querySelector('video');
-                video.playBackRate = xspeed;
+                video.playbackRate = xspeed;
 
             }
         });
@@ -228,15 +291,15 @@ class Player extends HTMLElement {
             video.autoplay = true;
         }
     }
-   /**
-    * 
-    * @param {this
-    * @description} player listens for changes to redux store.
-    */
-    listener (player){
+    /**
+     * 
+     * @param {this
+     * @description} player listens for changes to redux store.
+     */
+    listener(player) {
         return () => {
             const state = getState();
-            if(state.watch !== null){
+            if (state.watch !== null) {
                 player.playVideo(state.watch['src']);
             }
 

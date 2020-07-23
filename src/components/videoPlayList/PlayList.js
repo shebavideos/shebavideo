@@ -38,7 +38,7 @@ class PlayList extends HTMLElement {
     listener(playlist) {
 
         return () => {
-            
+
             const state = getState();
 
             const videoPlaylist = playlist.shadowRoot.querySelector('#videoPlaylist');
@@ -56,7 +56,7 @@ class PlayList extends HTMLElement {
                         loadedVideos = loadedVideos.filter(source => source.name !== videoObject.name);
                     }
                 }
-              
+
                 playlist.displayVideo(loadedVideos);
             } else {
 
@@ -104,13 +104,19 @@ class PlayList extends HTMLElement {
         durationCard.classList.add('duration');
         durationCard.textContent = video.duration;
 
-        const component = document.createElement('nextVideo');
+        const component = document.createElement('article');
         component.classList.add('nextVideo');
         component.id = source.id;
         component.setAttribute('data-name', source.name);
         component.onclick = e => {
+            // actually your click on the video element instead of article element.
+            // e.target is <video></video>.
             e.stopImmediatePropagation();
             watch(source.id);
+            root.querySelector('#videoPlaylist')
+                .removeChild(e.target.parentElement);
+           
+            remove(source.id);
         }
 
         [durationCard, video, removeBtn].forEach(element => {
