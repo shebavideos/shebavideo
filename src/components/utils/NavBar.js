@@ -43,24 +43,50 @@ class Navbar extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(temp.content.cloneNode(true));
     }
-   
-}
- // default methods of a web component.
-    connectedCallback () {
+    connectedCallback() {
         const root = this.shadowRoot,
-        upload = root.querySelector('input[type="file"]'),
-        about = root.querySelector('#about');
+            upload = root.querySelector('input[type="file"]'),
+            aboutBtn = root.querySelector('#about');
+        console.log(aboutBtn)
 
-        upload.addEventListener('change', e => {
-
-        });
-        about.addEventListener('click', e => {
-            e.stopImmediatePropagation();
-        })
+        upload.addEventListener('change', this.upload);
+        aboutBtn.addEventListener('click', this.about);
     }
-    // disconnectedCallback () {}
-    // attributeChangedCallback (attrName, oldVal, newVal){}
-    // adoptedCallback () {}
+    about(e) {
+        e.stopImmediatePropagation();
+        console.log("clicked.");
+        e.target.blur();
+    }
+    upload(e) {
+
+        const files = e.target.files,
+            ADDTOVIDEOS = [],
+            allowedVideoFormats = /\.(avi|divx|flv|mkv|mov|mp4|mpeg|mpg|ogm|ogv|ogx|rm|rmvb|smil|webm|wmv|xvid)$/,
+            allowedVideoTypes = /^video\/(avi|divx|flv|mkv|mov|mp4|mpeg|mpg|ogm|ogv|ogx|rm|rmvb|smil|webm|wmv|xvid)$/;
+
+        for (let i = 0; i < files.length; i++) {
+
+            let file = files.item(i),
+                { name, type } = file,
+                formatIsOkay = allowedVideoFormats.test(name),
+                typeIsOkay = allowedVideoTypes.test(type);
+
+            if (formatIsOkay && typeIsOkay) {
+                ADDTOVIDEOS.push({
+                    id: i,
+                    name,
+                    type,
+                    src: URL.createObjectURL(new Blob([file], { type }))
+                });
+            }
+        }
+        console.log(ADDTOVIDEOS);
+        e.target.value = null;
+
+        e.target.blur();
+    }
+
+}
 window.customElements.define('navbar-card', Navbar);
 
 const navbarCard = document.createElement('navbar-card');
