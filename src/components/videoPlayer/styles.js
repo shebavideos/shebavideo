@@ -69,7 +69,7 @@ export default () => {
        width:100px;
        height:5px;
        margin-left:25%;
-       border:1px solid white;
+       border:1px solid black;
        border-radius:1px;
        transform: rotate(-90deg);
     }
