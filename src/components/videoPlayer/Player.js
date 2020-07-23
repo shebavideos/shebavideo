@@ -37,6 +37,7 @@ class Player extends HTMLElement {
             keys = {
 
                 80: pip,
+                70: fullscreen,
                 40: playpause,
                 32: playpause,
                 13: playpause,
@@ -68,6 +69,10 @@ class Player extends HTMLElement {
             }
 
         }
+        function fullscreen () {
+            
+            video.requestFullscreen();
+        }
         document.onkeydown = e => {
             e.stopImmediatePropagation();
 
@@ -75,7 +80,7 @@ class Player extends HTMLElement {
                 keys[e.keyCode]("forward");
             }else if(e.keyCode === 37){
                 keys[e.keyCode]("backward");
-            }else if (/(80|40|32|13)/.test(e.keyCode)){
+            }else if (/(80|70|40|32|13)/.test(e.keyCode)){
                 keys[e.keyCode]();
             }
           
