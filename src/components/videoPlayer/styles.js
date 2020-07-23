@@ -48,7 +48,7 @@ export default () => {
           }
       }
     video{
-        background-color:#807878;
+        background-color:black;
         width:100%;
         height:100%;
         grid-column:1/13;
