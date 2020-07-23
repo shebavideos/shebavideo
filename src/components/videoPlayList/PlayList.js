@@ -37,12 +37,10 @@ class PlayList extends HTMLElement {
     /**
      * 
      * @param {URL} source 
-     * @param {string} length 
-     * @param {string} id 
-     * @param {object} data 
      * @description creates a video element.
      */
-    videoElement(source, length, id, data) {
+    videoElement(source) {
+
         const root =  this.shadowRoot;
         const removeBtn = document.createElement('span');
         removeBtn.classList.add('remove');
@@ -54,21 +52,21 @@ class PlayList extends HTMLElement {
         //    remove relevent data associated with 'id' from redux store.
         }
     
+        const video = document.createElement('video');
+        video.src = source.src;
+        video.currentTime += 2; //seconds.
+
         const durationCard = document.createElement('div');
         durationCard.classList.add('duration');
-        durationCard.textContent = length;
-    
-        const video = document.createElement('video');
-        video.src = source;
-        video.currentTime += 2; //seconds.
+        durationCard.textContent = video.duration;
     
         const component = document.createElement('nextVideo');
         component.classList.add('nextVideo');
         component.onclick = e => {
             e.stopImmediatePropagation();
             console.log("play video")
+            // use source.id to remove source in redux store.
             console.dir(source)
-            console.log(id)
         }
     
         [durationCard,video,removeBtn].forEach(element =>{
@@ -78,8 +76,6 @@ class PlayList extends HTMLElement {
        return (component);
     
     }
-    
-    
 
 }
 
