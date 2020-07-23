@@ -38,7 +38,7 @@ temp.innerHTML = `
  </nav>
 `;
 
-// export main component.
+
 class Navbar extends HTMLElement {
     constructor() {
         super();
@@ -53,11 +53,21 @@ class Navbar extends HTMLElement {
         upload.addEventListener('change', this.upload);
         aboutBtn.addEventListener('click', this.about);
     }
+    /**
+     * 
+     * @param {Event} e 
+     * @description displays app about information card.
+     */
     about(e) {
         e.stopImmediatePropagation();
         console.log("clicked.");
         e.target.blur();
     }
+    /**
+     * 
+     * @param {Event} e 
+     * @description adds uploaded videos to reducx store.
+     */
     upload(e) {
 
         const files = e.target.files,
