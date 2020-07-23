@@ -30,7 +30,8 @@ export const getState = store.getState;
 /**
  * 
  * @param {number} id 
- * @description selects video with given id from redux store.
+ * @description selects video with given id from redux store
+ *  and addeds it to watch state.
  */
 export const watch = (id) => {
     dispatch({ type: WATCH, payload: id });
