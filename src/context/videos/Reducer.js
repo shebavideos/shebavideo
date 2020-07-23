@@ -29,9 +29,17 @@ export default function reducer(state = {
                 watchNext: state.videos[action.payload] || null
             }
         case UPLOADED:
+            
+            const alreadyUploaded = state.videos.reduce((acc,cur) => {
+                 acc.push(cur.id);
+                 return acc;
+            },[]);
+            
+            const uploads = action.payload.filter(object => !alreadyUploaded.includes(object.id));
+
             return {
                 ...state,
-                videos: [...state.videos, ...action.payload]
+                videos: [...state.videos, ...uploads]
             }
         case REMOVE:
             return {

@@ -84,7 +84,7 @@ class Navbar extends HTMLElement {
 
             if (formatIsOkay && typeIsOkay) {
                 videos.push({
-                    id: i,
+                    id: `${i}`,
                     name,
                     type,
                     size,
