@@ -1,5 +1,7 @@
 "strict mode"
-// contains important components && their dynamic logic.
+import { uploadVideos } from "../../context/videos/State";
+
+
 const temp = document.createElement('template');
 temp.innerHTML = `
 <style>
@@ -47,8 +49,7 @@ class Navbar extends HTMLElement {
         const root = this.shadowRoot,
             upload = root.querySelector('input[type="file"]'),
             aboutBtn = root.querySelector('#about');
-        console.log(aboutBtn)
-
+        
         upload.addEventListener('change', this.upload);
         aboutBtn.addEventListener('click', this.about);
     }
@@ -60,29 +61,30 @@ class Navbar extends HTMLElement {
     upload(e) {
 
         const files = e.target.files,
-            ADDTOVIDEOS = [],
+         videos = [],
             allowedVideoFormats = /\.(avi|divx|flv|mkv|mov|mp4|mpeg|mpg|ogm|ogv|ogx|rm|rmvb|smil|webm|wmv|xvid)$/,
             allowedVideoTypes = /^video\/(avi|divx|flv|mkv|mov|mp4|mpeg|mpg|ogm|ogv|ogx|rm|rmvb|smil|webm|wmv|xvid)$/;
 
         for (let i = 0; i < files.length; i++) {
 
             let file = files.item(i),
-                { name, type } = file,
+                { name, type, size } = file,
                 formatIsOkay = allowedVideoFormats.test(name),
                 typeIsOkay = allowedVideoTypes.test(type);
 
             if (formatIsOkay && typeIsOkay) {
-                ADDTOVIDEOS.push({
+                videos.push({
                     id: i,
                     name,
                     type,
+                    size,
                     src: URL.createObjectURL(new Blob([file], { type }))
                 });
             }
         }
-        console.log(ADDTOVIDEOS);
-        e.target.value = null;
 
+        uploadVideos(videos);
+        e.target.value = null;
         e.target.blur();
     }
 
