@@ -57,7 +57,7 @@ export const uploadVideos = (videos) => {
 /**
  * 
  * @param {number} id 
- * @description removes vides with given id from redux store.
+ * @description removes video with given id from redux store.
  */
 export const remove = (id) => {
     dispatch({ type: REMOVE, payload: id });

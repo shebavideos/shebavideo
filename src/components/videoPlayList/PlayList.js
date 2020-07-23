@@ -26,12 +26,11 @@ class PlayList extends HTMLElement {
         this.shadowRoot.appendChild(temp.content.cloneNode(true));
     }
 
-
     connectedCallback() {
         const root =  this.shadowRoot,
         list = root.querySelector('#videoPlaylist');
 
-            list.appendChild(this.videoElement('#','05:00', 1, 'hello keba'));
+            list.appendChild(this.videoElement);
           
     }
     /**
