@@ -5,6 +5,7 @@ export default () => {
         margin: 0;
         padding: 0;
         color: #ffff;
+        font-family: 'Comic Neue', cursive;
     }
     
     .nextVideo {

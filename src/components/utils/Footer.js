@@ -4,11 +4,13 @@ const temp = document.createElement('template');
 temp.innerHTML = `
 <style>
 /* for all media queries*/
+@import url('https://fonts.googleapies.com/css2?family=Comic+Neue&display=swap');
     * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
         color: #ffff;
+        font-family: 'Comic Neue', cursive;
     }
     
     footer {

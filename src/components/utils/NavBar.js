@@ -3,11 +3,13 @@
 const temp = document.createElement('template');
 temp.innerHTML = `
 <style>
+@import url('https://fonts.googleapies.com/css2?family=Comic+Neue&display=swap');
     * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
         color: #ffff;
+        font-family: 'Comic Neue', cursive;
     }
     nav {
        float:right;
@@ -29,8 +31,8 @@ temp.innerHTML = `
     
 </style>
 <nav> 
-    <input type="file" />
-    <button> About </button>
+    <input type="file" multiple accept="video/*" />
+    <button id="about"> About </button>
  </nav>
 `;
 
@@ -44,7 +46,18 @@ class Navbar extends HTMLElement {
    
 }
  // default methods of a web component.
-    // connectedCallback () {}
+    connectedCallback () {
+        const root = this.shadowRoot,
+        upload = root.querySelector('input[type="file"]'),
+        about = root.querySelector('#about');
+
+        upload.addEventListener('change', e => {
+
+        });
+        about.addEventListener('click', e => {
+            e.stopImmediatePropagation();
+        })
+    }
     // disconnectedCallback () {}
     // attributeChangedCallback (attrName, oldVal, newVal){}
     // adoptedCallback () {}

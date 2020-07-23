@@ -6,7 +6,8 @@ import dropMenu from "./controls/dropupMenu";
 const temp = document.createElement('template');
 temp.innerHTML = `
 <style>
-${styles()}
+    @import url('https://fonts.googleapies.com/css2?family=Comic+Neue&display=swap');
+    ${styles()}
 </style>
 <div id="videoPlayer"> 
     <video ></video>
