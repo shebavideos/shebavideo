@@ -2,7 +2,7 @@
 import styles from "./styles";
 import controls from "./controls/videoControls";
 import dropMenu from "./controls/dropupMenu";
-import { getState, subscribe } from "../../context/videos/State";
+import { getState, subscribe} from "../../context/player/State";
 
 const temp = document.createElement('template');
 temp.innerHTML = `
@@ -24,18 +24,10 @@ class Player extends HTMLElement {
     }
 
     connectedCallback() {
-        this.videoControls();
-        this.keyBoard();
-        subscribe(this.listener(this));
-        // auto play next.
-    }
-    playNext(){
-        const root = this.shadowRoot,
-        video = root.querySelector('video');
-        video.onended = e => {
-            console.log("video ended")
-            console.dir(e.target);
-        }
+        const self = this;
+        self.videoControls();
+        self.keyBoard();
+        self.unsubscribe = subscribe(self.listener(self));
     }
     /**
      * @descriptions listens for keyboard controls.
@@ -300,24 +292,28 @@ class Player extends HTMLElement {
      * @description sets parameter as video.src and autoplay video.
      */
     playVideo(source) {
-        const root = this.shadowRoot;
+        const self = this.shadowRoot;
         if (source) {
-            const video = root.querySelector('video');
+          
+            const video = self.querySelector('video');
             video.src = source;
             video.autoplay = true;
+
         }
     }
     /**
      * 
-     * @param {this
-     * @description} player listens for changes to redux store.
+     * @param {this} self
+     * @description  listens for changes to redux store.
      */
-    listener(player) {
+    listener(self) {
         return () => {
             const state = getState();
+            
             if (state.watch !== null) {
-                player.playVideo(state.watch['src']);
+                self.playVideo(state.watch['src']);
             }
+           
 
         }
     }

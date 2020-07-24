@@ -1,15 +1,9 @@
-/**
- * @description redux state interface.
- */
-
 import { createStore } from "redux";
 import { devToolsEnhancer } from "redux-devtools-extension"
 import reducer from "./Reducer"
 import {
-    WATCH,
-    WATCHNEXT,
     UPLOADED,
-    REMOVE
+    REMOVE,
 } from "../types";
 
 const store = createStore(
@@ -26,25 +20,6 @@ const store = createStore(
  */
 export const getState = store.getState;
 
-
-/**
- * 
- * @param {number} id 
- * @description selects video with given id from redux store
- *  and addeds it to watch state.
- */
-export const watch = (id) => {
-    dispatch({ type: WATCH, payload: id });
-}
-
-/**
- * 
- * @param {number} id 
- * @description adds video with given id to watch next queue, in redux store.
- */
-export const watchNext = (id) => {
-    dispatch({ type: WATCHNEXT, payload: id });
-}
 
 /**
  * 
@@ -73,4 +48,3 @@ export const subscribe = listener => {
     const unsubscribe = store.subscribe(listener);
     return unsubscribe;
 }
-

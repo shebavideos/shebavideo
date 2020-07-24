@@ -3,11 +3,13 @@ import styles from "./styles";
 import svgBtn from "./svg/remove.svg";
 import {
     subscribe,
-    watch,
-    watchNext,
     remove,
     getState
 } from "../../context/videos/State";
+
+import {
+    watch
+} from "../../context/player/State";
 
 
 const temp = document.createElement('template');
@@ -125,8 +127,6 @@ class PlayList extends HTMLElement {
             } else if (hours === minutes) {
                 duration = `${minutes}:${seconds}`;
             }
-
-            if (minutes === 0) duration = `${seconds}`;
 
             durationCard.textContent = duration;
         }
