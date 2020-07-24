@@ -27,6 +27,15 @@ class Player extends HTMLElement {
         this.videoControls();
         this.keyBoard();
         subscribe(this.listener(this));
+        // auto play next.
+    }
+    playNext(){
+        const root = this.shadowRoot,
+        video = root.querySelector('video');
+        video.onended = e => {
+            console.log("video ended")
+            console.dir(e.target);
+        }
     }
     /**
      * @descriptions listens for keyboard controls.
@@ -44,6 +53,19 @@ class Player extends HTMLElement {
                 39: skip,
                 37: skip
             }
+    
+        document.onkeydown = e => {
+            e.stopImmediatePropagation();
+
+            if(e.keyCode === 39){
+                keys[e.keyCode]("forward");
+            }else if(e.keyCode === 37){
+                keys[e.keyCode]("backward");
+            }else if (/(80|70|40|32|13)/.test(e.keyCode)){
+                keys[e.keyCode]();
+            }
+            
+        }
         function playpause() {
 
             video.paused ? video.play() : video.pause()
@@ -73,18 +95,7 @@ class Player extends HTMLElement {
             
             video.requestFullscreen();
         }
-        document.onkeydown = e => {
-            e.stopImmediatePropagation();
-
-            if(e.keyCode === 39){
-                keys[e.keyCode]("forward");
-            }else if(e.keyCode === 37){
-                keys[e.keyCode]("backward");
-            }else if (/(80|70|40|32|13)/.test(e.keyCode)){
-                keys[e.keyCode]();
-            }
-          
-        }
+      
     }
 
     videoControls() {

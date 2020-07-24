@@ -96,13 +96,42 @@ class PlayList extends HTMLElement {
             remove(source.id);
         }
 
+        const durationCard = document.createElement('div');
+        durationCard.classList.add('duration');
+
+
         const video = document.createElement('video');
         video.src = source.src;
         video.currentTime += 2; //seconds.
+        video.onloadedmetadata = () => {
 
-        const durationCard = document.createElement('div');
-        durationCard.classList.add('duration');
-        durationCard.textContent = video.duration;
+            let hours = Math.floor(video.duration / 60);
+            let minutes = Math.floor(video.duration / 60) >= 60 ? Math.floor((video.duration / 60) % 60) : Math.floor(video.duration / 60);
+            let seconds = Math.floor(video.duration - Math.floor(video.duration / 60) * 60); //ok
+            var duration;
+
+            if (seconds < 10) seconds = `0${seconds}`;
+
+            if (minutes < 10) minutes = `0${minutes}`;
+
+            if(hours < 10)  hours = `0${hours}`;
+
+            if (hours > 60) {
+
+                hours = Math.floor(Math.floor(video.duration / 60) / 60);
+                hours = hours < 10 ? `0${hours}` : hours;
+                duration = `${hours}:${minutes}:${seconds}`;
+                
+            } else if (hours === minutes) {
+                duration = `${minutes}:${seconds}`;
+            } 
+
+            if(minutes === 0) duration = `${seconds}`;
+
+            durationCard.textContent = duration;
+        }
+
+
 
         const component = document.createElement('article');
         component.classList.add('nextVideo');
@@ -115,7 +144,7 @@ class PlayList extends HTMLElement {
             watch(source.id);
             root.querySelector('#videoPlaylist')
                 .removeChild(e.target.parentElement);
-           
+
             remove(source.id);
         }
 
