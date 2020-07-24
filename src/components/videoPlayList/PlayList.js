@@ -108,7 +108,7 @@ class PlayList extends HTMLElement {
             let hours = Math.floor(video.duration / 60);
             let minutes = Math.floor(video.duration / 60) >= 60 ? Math.floor((video.duration / 60) % 60) : Math.floor(video.duration / 60);
             let seconds = Math.floor(video.duration - Math.floor(video.duration / 60) * 60); //ok
-            var duration;
+            let duration;
 
             if (seconds < 10) seconds = `0${seconds}`;
 
@@ -121,7 +121,7 @@ class PlayList extends HTMLElement {
                 hours = Math.floor(Math.floor(video.duration / 60) / 60);
                 hours = hours < 10 ? `0${hours}` : hours;
                 duration = `${hours}:${minutes}:${seconds}`;
-                
+
             } else if (hours === minutes) {
                 duration = `${minutes}:${seconds}`;
             } 
