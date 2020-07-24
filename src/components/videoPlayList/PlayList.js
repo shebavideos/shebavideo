@@ -114,7 +114,7 @@ class PlayList extends HTMLElement {
 
             if (minutes < 10) minutes = `0${minutes}`;
 
-            if(hours < 10)  hours = `0${hours}`;
+            if (hours < 10) hours = `0${hours}`;
 
             if (hours > 60) {
 
@@ -124,9 +124,9 @@ class PlayList extends HTMLElement {
 
             } else if (hours === minutes) {
                 duration = `${minutes}:${seconds}`;
-            } 
+            }
 
-            if(minutes === 0) duration = `${seconds}`;
+            if (minutes === 0) duration = `${seconds}`;
 
             durationCard.textContent = duration;
         }
