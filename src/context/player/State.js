@@ -4,7 +4,8 @@ import reducer from "./Reducer";
 
 import {
     WATCH,
-    WATCHNEXT
+    WATCHNEXT,
+    AUTOPLAY
 } from "../types";
 
 const store = createStore(
@@ -21,7 +22,14 @@ const store = createStore(
  */
 export const getState = store.getState;
 
-
+/**
+ * 
+ * @param {boolean} answer 
+ */
+export const setAutoplay = answer => {
+    
+    dispatch({type: AUTOPLAY, payload: answer});
+}
 /**
  * 
  * @param {number} id 

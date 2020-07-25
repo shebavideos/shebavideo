@@ -1,6 +1,7 @@
 "strict mode"
 import { uploadVideos } from "../../context/videos/State";
 import { nanoid } from "nanoid";
+import { setAutoplay, getState } from "../../context/player/State";
 
 const temp = document.createElement('template');
 temp.innerHTML = `
@@ -33,6 +34,7 @@ temp.innerHTML = `
     
 </style>
 <nav> 
+    <button id="autoplay" > autoplay </button>
     <input type="file" multiple accept="video/*" />
     <button id="about"> About </button>
  </nav>
@@ -47,11 +49,27 @@ class Navbar extends HTMLElement {
     }
     connectedCallback() {
         const root = this.shadowRoot,
+            autoplay = root.querySelector('#autoplay'),
             upload = root.querySelector('input[type="file"]'),
             aboutBtn = root.querySelector('#about');
-        
+
+        autoplay.addEventListener('click', this.autoplay);
         upload.addEventListener('change', this.upload);
         aboutBtn.addEventListener('click', this.about);
+    }
+    /**
+     * 
+     * @param {Event} e 
+     * @description toggles autoplay mode.
+     */
+    autoplay(e){
+        e.stopImmediatePropagation();
+       
+        let state = getState();
+        console.log(state);
+        setAutoplay(state.autoplay === true ? false : true );
+        console.log("clicked.");
+        e.target.blur();
     }
     /**
      * 

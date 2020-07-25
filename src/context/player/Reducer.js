@@ -1,6 +1,7 @@
 import {
     WATCH,
-    WATCHNEXT
+    WATCHNEXT,
+    AUTOPLAY
 } from "../types";
 import {
     getState,
@@ -16,7 +17,7 @@ import {
 export default function reducer(state = {
     watch: null,
     watching: null,
-    autoplay: true
+    autoplay: false
 }, action) {
 
     switch (action.type) {
@@ -53,6 +54,11 @@ export default function reducer(state = {
                 ...state,
                 watch: watchNext() || reset(),
                 watching: watchIndex
+            }
+        case  AUTOPLAY:
+            return {
+                ...state,
+                autoplay:action.payload
             }
 
         default:

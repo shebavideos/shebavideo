@@ -323,7 +323,7 @@ class Player extends HTMLElement {
     listener(self) {
         return () => {
             const state = getState();
-            console.log(state)
+            
             if (state.watch !== null) {
                 self.playVideo(state.watch['src']);
             }
