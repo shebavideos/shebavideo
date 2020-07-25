@@ -8,7 +8,8 @@ import {
 } from "../../context/videos/State";
 
 import {
-    watch
+    watch,
+    subscribe as subToPlayer
 } from "../../context/player/State";
 
 
@@ -31,13 +32,14 @@ class PlayList extends HTMLElement {
 
     connectedCallback() {
 
-        subscribe(this.listener(this));
+        subscribe(this.beforeDisplayingVideoToUi(this));
+        subToPlayer(this.updateUI(this));
     }
     /**
      * @param {this} playlist
-     * @description listens for changes to redux store.
+     * @description listens for changes to redux store, only allows video(s) not already displayed to be displayed.
      */
-    listener(playlist) {
+    beforeDisplayingVideoToUi(playlist) {
 
         return () => {
 
@@ -45,10 +47,7 @@ class PlayList extends HTMLElement {
 
             const videoPlaylist = playlist.shadowRoot.querySelector('#videoPlaylist');
 
-            const visibleVideos = [...videoPlaylist.children].reduce((accumulator, videoComponent) => {
-                accumulator.push(videoComponent.getAttribute('data-name'));
-                return accumulator;
-            }, []);
+            const visibleVideos = [...videoPlaylist.children].map(videoComponent => videoComponent.getAttribute('data-name'));
 
             let loadedVideos = state.videos;
 
@@ -67,6 +66,31 @@ class PlayList extends HTMLElement {
             }
         }
 
+    }
+    /**
+     * @param {this} playlist
+     * @description listens for changes to redux store, removes stale video(s) already viewed by user using auto load.
+     */
+    updateUI (playlist) {
+        return () => {
+            let state = getState();
+            let videoListComponent = playlist.shadowRoot.querySelector('#videoPlaylist');
+            let videoComponents = [...videoListComponent.children];
+            let videosinUiIds = videoComponents.map(videoComponent => videoComponent.getAttribute('id'));
+            let videosInStateIds = state.videos.map(source => source.id);
+
+            if(videosinUiIds.length !== videosInStateIds.length){
+
+                let staleVideosInUiIds = videosinUiIds.filter(id => !videosInStateIds.includes(id));
+                
+                if(staleVideosInUiIds.length > 0) staleVideosInUiIds.forEach(id => {
+                   for (let videoComponent of videoComponents){
+                       if(videoComponent.getAttribute('id') === id) videoListComponent.removeChild(videoComponent);
+                   }
+                });
+
+            }
+        }
     }
     /**
      * 
@@ -106,7 +130,7 @@ class PlayList extends HTMLElement {
         video.src = source.src;
         video.currentTime += 2; //seconds.
         video.onloadedmetadata = () => {
-
+            
             let hours = Math.floor(video.duration / 60);
             let minutes = Math.floor(video.duration / 60) >= 60 ? Math.floor((video.duration / 60) % 60) : Math.floor(video.duration / 60);
             let seconds = Math.floor(video.duration - Math.floor(video.duration / 60) * 60); //ok

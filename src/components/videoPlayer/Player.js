@@ -2,7 +2,7 @@
 import styles from "./styles";
 import controls from "./controls/videoControls";
 import dropMenu from "./controls/dropupMenu";
-import { getState, subscribe} from "../../context/player/State";
+import { getState, subscribe, watchNext} from "../../context/player/State";
 
 const temp = document.createElement('template');
 temp.innerHTML = `
@@ -27,7 +27,21 @@ class Player extends HTMLElement {
         const self = this;
         self.videoControls();
         self.keyBoard();
+        self.autoplay();
         self.unsubscribe = subscribe(self.listener(self));
+    }
+    autoplay(){
+        const root = this.shadowRoot,
+        video = root.querySelector('video');
+        video.addEventListener('ended', () => {
+           const {
+             autoplay
+            } = getState();
+            
+           console.log("autoplay")
+           console.log(getState())
+            if(autoplay) watchNext();
+        })
     }
     /**
      * @descriptions listens for keyboard controls.
@@ -309,7 +323,7 @@ class Player extends HTMLElement {
     listener(self) {
         return () => {
             const state = getState();
-            
+            console.log(state)
             if (state.watch !== null) {
                 self.playVideo(state.watch['src']);
             }

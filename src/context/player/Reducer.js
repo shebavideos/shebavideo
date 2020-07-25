@@ -1,9 +1,11 @@
 import {
-    WATCH
+    WATCH,
+    WATCHNEXT
 } from "../types";
- import {
-     getState
- } from "../videos/State";
+import {
+    getState,
+    remove
+} from "../videos/State";
 
 /**
  * 
@@ -12,18 +14,45 @@ import {
  * @description maintains state management of redux store.
  */
 export default function reducer(state = {
-    watch: null
+    watch: null,
+    watching: null,
+    autoplay: true
 }, action) {
 
     switch (action.type) {
 
         case WATCH:
-            let playlist = getState();
+            var playlist = getState();
+
             let index = playlist.videos.findIndex(element => element.id === action.payload);
 
             return {
                 ...state,
-                watch: playlist.videos[index] || null
+                watch: playlist.videos[index] || null,
+                watching: index
+            }
+        case WATCHNEXT:
+            var playlist = getState();
+
+            let watchIndex = state.watching,
+                reset = () => {
+                    state.autoplay = false;
+                    return state.watching = null;
+                },
+                /**
+                 * @description passes id of video to be loaded next into the
+                 * video player and updates the video play list array.
+                 * @return {object} video
+                 */
+                watchNext = () => {
+                    let video = playlist.videos[watchIndex];
+                    remove(video.id);
+                    return video;
+                }
+            return {
+                ...state,
+                watch: watchNext() || reset(),
+                watching: watchIndex
             }
 
         default:

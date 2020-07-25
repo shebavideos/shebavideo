@@ -35,10 +35,10 @@ export const watch = (id) => {
 /**
  * 
  * @param {number} id 
- * @description adds video with given id to watch next queue, in redux store.
+ * @description automaticaly loads a video in playlist in the video player.
  */
-export const watchNext = (id) => {
-    dispatch({ type: WATCHNEXT, payload: id });
+export const watchNext = () => {
+    dispatch({ type: WATCHNEXT });
 }
 
 /**
