@@ -2,6 +2,7 @@
 import { uploadVideos } from "../../context/videos/State";
 import { nanoid } from "nanoid";
 import { setAutoplay, getState } from "../../context/player/State";
+import upload from "./upload_video.svg";
 
 const temp = document.createElement('template');
 temp.innerHTML = `
@@ -15,22 +16,26 @@ temp.innerHTML = `
         font-family: 'Comic Neue', cursive;
     }
     nav {
-       float:right;
+        float:right;
         margin: 20px;
+        display:flex;
+        justify-content:space-evenly;
+        align-items:center;
+        width:500px;
        
     }
     nav * {
         cursor:pointer;
+       /* margin-left:50px;*/
     }
-    input[type="file"]{
-        margin-right:20px;
-    }
+  
     button{
         border:none;
         height:30px;
         width:60px;
         background-color:#008CFF;
     }
+    /*autoplay checkbox custom style.*/
     .slider {
         position: absolute;
         cursor: pointer;
@@ -66,11 +71,12 @@ temp.innerHTML = `
     }
     
     .slider.round {
-        border-radius: 34px;
+        border-radius: 2px;
+        height:25px;
     }
     
     .slider.slider.round::before {
-        border-radius: 50%;
+        border-radius: 10%;
     }
 
     .switch {
@@ -84,14 +90,44 @@ temp.innerHTML = `
         width: 0;
         height: 0;
     }
-    
+
+    /*input file cutomize css*/
+    input[type="file"] {
+        position:absolute;
+        z-index: -1;
+        width:30px;
+      }
+
+    .upload-wrapper {
+        position: relative;
+        width:30px;
+      }
+      
+    .uploadbtn {
+        display: flex;
+        justify-content:center;
+        cursor: pointer; 
+        width:100px;
+        height:60px;
+        background:#222;
+    }
+    .uploadbtn svg {
+        height:60px;
+        width:100px;
+        pointer-events: none;
+    }  
 </style>
 <nav> 
     <label id="dark-mode" class="switch">
         <input type="checkbox"  id="autoplay"/>
         <span class="slider round"></span>
     </label>
-    <input type="file" multiple accept="video/*" />
+
+    <div class=upload-wrapper">
+        <input type="file" multiple accept="video/*" id="upload" />
+        <label class="uploadbtn" for="upload">${upload}</label>
+    </div>
+
     <button id="about"> About </button>
  </nav>
 `;
@@ -155,7 +191,7 @@ class Navbar extends HTMLElement {
      */
     autoplay(e){
         e.stopImmediatePropagation();
-       console.log("checked")
+      
         let state = getState();
         
         setAutoplay(state.autoplay === true ? false : true );
