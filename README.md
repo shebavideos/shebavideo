@@ -4,4 +4,8 @@ webapp video player with built in keyboard control picture in picture mode autop
 
 ### formats supported
                 "avi", "divx", "flv", " mkv", "mov", "mp4", "mpeg", "mpg", "ogm", "ogv", "ogx", "rm", "rmvb", "smil", "webm", "wmv", "xvid"
+## versions :
+
+[version 1.0.0](shebavideo.github.io/)
+
             
