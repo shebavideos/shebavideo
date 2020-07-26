@@ -154,6 +154,9 @@ class PlayList extends HTMLElement {
 
             durationCard.textContent = duration;
         }
+        video.oncontextmenu = e => {
+            e.preventDefault()
+        }
 
 
 

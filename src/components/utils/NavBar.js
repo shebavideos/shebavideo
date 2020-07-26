@@ -17,19 +17,20 @@ temp.innerHTML = `
     }
     nav {
         float:right;
-        margin: 20px;
-        display:flex;
-        justify-content:space-evenly;
-        align-items:center;
+        margin:auto;
+        display:grid;
+        grid-template-columns:repeat(6, auto);
+        grid-template-rows: repeat(1, auto);
+        grip-gap:2px;
         width:500px;
-       
     }
     nav * {
         cursor:pointer;
-       /* margin-left:50px;*/
+        margin:auto;
     }
   
-    button{
+    .aboutbtn{
+        grid-column:6;
         border:none;
         height:30px;
         width:60px;
@@ -80,6 +81,8 @@ temp.innerHTML = `
     }
 
     .switch {
+        grid-column:4;
+        
         position: relative;
         display: inline-block;
         width: 50px;
@@ -97,8 +100,11 @@ temp.innerHTML = `
         z-index: -1;
         width:30px;
       }
-
+    #upload:focus{
+        outline:1px solid #222;
+    }
     .upload-wrapper {
+        grid-column:2;
         position: relative;
         width:30px;
       }
@@ -118,7 +124,7 @@ temp.innerHTML = `
     }  
 </style>
 <nav> 
-    <label id="dark-mode" class="switch">
+    <label  class="switch">
         <input type="checkbox"  id="autoplay"/>
         <span class="slider round"></span>
     </label>
@@ -128,7 +134,7 @@ temp.innerHTML = `
         <label class="uploadbtn" for="upload">${upload}</label>
     </div>
 
-    <button id="about"> About </button>
+    <button id="about" class="aboutbtn"> About </button>
  </nav>
 `;
 

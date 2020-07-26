@@ -1,7 +1,5 @@
 "strict mode"
 
-
-// contains important components && their dynamic logic.
 const temp = document.createElement('template');
 temp.innerHTML = `
 <style>
@@ -35,7 +33,7 @@ temp.innerHTML = `
 <main></main>
 `;
 
-// export main component.
+
 class MainContent extends HTMLElement {
     constructor() {
         super();

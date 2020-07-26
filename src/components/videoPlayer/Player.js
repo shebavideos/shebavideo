@@ -37,9 +37,7 @@ class Player extends HTMLElement {
            const {
              autoplay
             } = getState();
-            
-           console.log("autoplay")
-           console.log(getState())
+        
             if(autoplay) watchNext();
         })
     }
@@ -119,6 +117,9 @@ class Player extends HTMLElement {
             e.stopImmediatePropagation();
             video.paused ? video.play() : video.pause()
             playBtn.blur();
+        }
+        video.oncontextmenu = e => {
+            e.preventDefault()
         }
 
         fullscreenBtn.onclick = e => {
