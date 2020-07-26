@@ -1,4 +1,5 @@
 "strict mode"
+
 import { uploadVideos } from "../../context/videos/State";
 import { nanoid } from "nanoid";
 import { setAutoplay, getState } from "../../context/player/State";
@@ -15,13 +16,14 @@ temp.innerHTML = `
         color: #ffff;
         font-family: 'Comic Neue', cursive;
     }
+
     nav {
         float:right;
         margin:auto;
         display:grid;
         grid-template-columns:repeat(6, auto);
         grid-template-rows: repeat(1, auto);
-        grip-gap:2px;
+        grip-gap:1px;
         width:500px;
     }
     nav * {
@@ -122,6 +124,8 @@ temp.innerHTML = `
         width:100px;
         pointer-events: none;
     }  
+
+
 </style>
 <nav> 
     <label  class="switch">
@@ -134,7 +138,7 @@ temp.innerHTML = `
         <label class="uploadbtn" for="upload">${upload}</label>
     </div>
 
-    <button id="about" class="aboutbtn"> About </button>
+    <button id="about" class="aboutbtn">About</button>
  </nav>
 `;
 
@@ -153,9 +157,9 @@ class Navbar extends HTMLElement {
 
         autoplay.addEventListener('click', this.autoplay);
         upload.addEventListener('change', this.upload);
-        aboutBtn.addEventListener('click', this.about);
+        aboutBtn.addEventListener('click', this.about(this));
     }
-   
+
     /**
      * 
      * @param {Event} e 
@@ -164,7 +168,7 @@ class Navbar extends HTMLElement {
     upload(e) {
 
         const files = e.target.files,
-         videos = [],
+            videos = [],
             allowedVideoFormats = /\.(avi|divx|flv|mkv|mov|mp4|mpeg|mpg|ogm|ogv|ogx|rm|rmvb|smil|webm|wmv|xvid)$/,
             allowedVideoTypes = /^video\/(avi|divx|flv|mkv|mov|mp4|mpeg|mpg|ogm|ogv|ogx|rm|rmvb|smil|webm|wmv|xvid)$/;
 
@@ -190,18 +194,18 @@ class Navbar extends HTMLElement {
         e.target.value = null;
         e.target.blur();
     }
-     /**
-     * 
-     * @param {Event} e 
-     * @description toggles autoplay mode.
-     */
-    autoplay(e){
+    /**
+    * 
+    * @param {Event} e 
+    * @description toggles autoplay mode.
+    */
+    autoplay(e) {
         e.stopImmediatePropagation();
-      
+
         let state = getState();
-        
-        setAutoplay(state.autoplay === true ? false : true );
-       
+
+        setAutoplay(state.autoplay === true ? false : true);
+
         e.target.blur();
     }
     /**
@@ -209,10 +213,29 @@ class Navbar extends HTMLElement {
      * @param {Event} e 
      * @description displays app about information card.
      */
-    about(e) {
+    about(root) {
+       return (e) => {
         e.stopImmediatePropagation();
-      
+       
+        if(root.shadowRoot.children.length === 3){
+            root.shadowRoot.removeChild(root.shadowRoot.children[2]);
+        }else if (root.shadowRoot.children.length === 2){
+            import("../appInfo/About.js")
+            .then(module => {
+                const aboutComponent = module.default;
+                aboutComponent.onclick = e => root.shadowRoot.removeChild(aboutComponent);
+                document.addEventListener('click', e => {
+                    if(root.shadowRoot.children.length === 3){
+                        root.shadowRoot.removeChild(root.shadowRoot.children[2]);
+                    }
+                });
+                root.shadowRoot.appendChild(aboutComponent);
+            })
+            .catch(err => console.error(err));
+        }
+
         e.target.blur();
+       }
     }
 
 }

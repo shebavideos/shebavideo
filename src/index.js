@@ -1,6 +1,7 @@
 "strict mode"
 import css from "./main.css";
 import App from "./components/App";
+import sw from "./serviceworker";
 
 /**
  * @description Since we are using HtmlWebpackPlugin WITHOUT a template,
@@ -14,4 +15,4 @@ App(root);
 
 document.body.appendChild(root);
 
-
+sw();

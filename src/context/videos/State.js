@@ -1,5 +1,4 @@
 import { createStore } from "redux";
-import { devToolsEnhancer } from "redux-devtools-extension"
 import reducer from "./Reducer"
 import {
     UPLOADED,
@@ -7,11 +6,7 @@ import {
 } from "../types";
 
 const store = createStore(
-    reducer,
-    // remove in production.
-    devToolsEnhancer({
-        trace: true
-    })
+    reducer
 ),
     { dispatch, } = store;
 
