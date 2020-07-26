@@ -60,11 +60,12 @@ module.exports = {
             title: "sheba video player",
             meta: {
                 author: "K.T Motshoana",
-                applicationName: "sheba video",
+                application_name: "sheba video",
                 description: "webapp video player with built in keyboard control picture in picture mode autoplay and speed extension up to 5x speed",
                 robots: "index,follow",
                 googlebot: "index,follow",
-                keywords:"sheba video player, K.T motshoana, free online video player"
+                keywords:"sheba video player, K.T motshoana, free online video player",
+                theme_color: "#006eff"
                 
             },
             favicon: path.resolve("src/icons/144x144.png")
