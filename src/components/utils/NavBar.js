@@ -31,10 +31,66 @@ temp.innerHTML = `
         width:60px;
         background-color:#008CFF;
     }
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #ccc;
+        transition: 4s;
+        -webkit-transition: 4s;
+    }
+    
+    .slider::before {
+        position: absolute;
+        content: "";
+        height: 15px;
+        width: 15px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+    }
+    
+    input:checked+.slider {
+        background-color: #33373a;
+    }
+    
+    input:focus+.slider {
+        box-shadow: 0 0 1px rgba(9, 84, 146, 0.247);
+    }
+    
+    input:checked+.slider::before {
+        transform: translateX(26px);
+    }
+    
+    .slider.round {
+        border-radius: 34px;
+    }
+    
+    .slider.slider.round::before {
+        border-radius: 50%;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+    }
+    
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
     
 </style>
 <nav> 
-    <button id="autoplay" > autoplay </button>
+    <label id="dark-mode" class="switch">
+        <input type="checkbox"  id="autoplay"/>
+        <span class="slider round"></span>
+    </label>
     <input type="file" multiple accept="video/*" />
     <button id="about"> About </button>
  </nav>
@@ -57,30 +113,7 @@ class Navbar extends HTMLElement {
         upload.addEventListener('change', this.upload);
         aboutBtn.addEventListener('click', this.about);
     }
-    /**
-     * 
-     * @param {Event} e 
-     * @description toggles autoplay mode.
-     */
-    autoplay(e){
-        e.stopImmediatePropagation();
-       
-        let state = getState();
-        console.log(state);
-        setAutoplay(state.autoplay === true ? false : true );
-        console.log("clicked.");
-        e.target.blur();
-    }
-    /**
-     * 
-     * @param {Event} e 
-     * @description displays app about information card.
-     */
-    about(e) {
-        e.stopImmediatePropagation();
-        console.log("clicked.");
-        e.target.blur();
-    }
+   
     /**
      * 
      * @param {Event} e 
@@ -113,6 +146,30 @@ class Navbar extends HTMLElement {
 
         uploadVideos(videos);
         e.target.value = null;
+        e.target.blur();
+    }
+     /**
+     * 
+     * @param {Event} e 
+     * @description toggles autoplay mode.
+     */
+    autoplay(e){
+        e.stopImmediatePropagation();
+       console.log("checked")
+        let state = getState();
+        
+        setAutoplay(state.autoplay === true ? false : true );
+       
+        e.target.blur();
+    }
+    /**
+     * 
+     * @param {Event} e 
+     * @description displays app about information card.
+     */
+    about(e) {
+        e.stopImmediatePropagation();
+      
         e.target.blur();
     }
 
